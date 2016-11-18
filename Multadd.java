@@ -15,6 +15,14 @@ public class Multadd {
       return (a * b + c);
     }
 
+    /* Takes value (double) x
+    *  @param x as a double
+    *  @return solves for xe^(-x) + sqrt(1 - e^(-x))
+    **/
+    public static double expSum(double x){
+        return multadd(x, Math.exp(x*(-1)), Math.sqrt(1 - Math.exp(x*(-1))));
+    }
+
     public static void main(String[] args){
       double result = multadd(1.0,3.0,4.0);
       System.out.println(result);
@@ -28,6 +36,12 @@ public class Multadd {
 
       double addlog = (Math.log10(20) + Math.log10(10));
       System.out.println(addlog);
+
+      double euler = expSum(2);
+      System.out.println(euler);
+
+      double valE = (2*Math.exp(-2) + Math.sqrt(1 - Math.exp(-2)));
+      System.out.println(valE);
 
     }
 }
