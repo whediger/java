@@ -26,5 +26,8 @@ public class Multadd {
       double cos = Math.cos(Math.PI/4)/2 + Math.sin(Math.PI/4);
       System.out.println(cos);
 
+      double addlog = (Math.log10(20) + Math.log10(10));
+      System.out.println(addlog);
+
     }
 }
