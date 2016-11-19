@@ -18,11 +18,32 @@ public class Factorial {
     return num;
   }
 
+  public static double myExp(int x, int n){
+    double result = 0;
+    for (int i = 0; i < n; i++){
+      System.out.println("x: " + x + " n " + n + " i " + i);
+      System.out.println(result);
+      if ( i == 0 ){
+        result += 1;
+        continue;
+      }
+      if ( i == 1){
+        result += i;
+        continue;
+      }
+      result += (Math.pow(x, i)/calcFactorial(i));
+    }
+    return result;
+  }
+
   public static void main(String[] args){
     int num = calcFactorial(9);
     System.out.println(num);
 
     int iterate = iterateFactorial(9);
     System.out.println(iterate);
+
+    double exp = myExp(2, 34);
+    System.out.println(exp);
   }
 }
