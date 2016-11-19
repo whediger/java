@@ -10,8 +10,19 @@ public class Factorial {
     return result;
   }
 
+  public static int iterateFactorial(int num){
+    int result;
+    for (int i = num -1; i > 1; i--){
+      num *= i;
+    }
+    return num;
+  }
+
   public static void main(String[] args){
     int num = calcFactorial(9);
     System.out.println(num);
+
+    int iterate = iterateFactorial(9);
+    System.out.println(iterate);
   }
 }
