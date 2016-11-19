@@ -26,6 +26,24 @@ public class MaxInRange {
     return maxInRange(arr, start, end, maxVal);
   }
 
+  public static int max(int[] arr){
+    if ( arr.length == 0){
+      return -1;
+    }
+    return max(arr, (arr.length -1), 0);
+  }
+
+  private static int max(int[] arr, int lengthIndex, int maxVal){
+    if (maxVal < arr[lengthIndex]){
+      maxVal = arr[lengthIndex];
+    }
+    if (lengthIndex == 0 ){
+      return maxVal;
+    }
+    lengthIndex--;
+    return max(arr, lengthIndex, maxVal);
+  }
+
   public static void main(String[] args){
 
     int[] scores = new int[100];
@@ -33,7 +51,10 @@ public class MaxInRange {
       Random rand = new Random();
       scores[i] = rand.nextInt(100);
     }
-    int maxVal = maxInRange(scores, 60, 65);
+    int maxRangeVal = maxInRange(scores, 60, 65);
+    System.out.println("Max value in range is: " + maxRangeVal);
+
+    int maxVal = max(scores);
     System.out.println("Max value is: " + maxVal);
   }
 }
