@@ -26,6 +26,10 @@ public class MaxInRange {
     return maxInRange(arr, start, end, maxVal);
   }
 
+  /* Takes an arrey and returns the max value in the array
+   * @param int array
+   * @return the max value in the array
+  **/
   public static int max(int[] arr){
     if ( arr.length == 0){
       return -1;
