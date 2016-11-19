@@ -7,12 +7,10 @@ public class Power {
   }
 
   private static double power(double x, int n, double total){
-    n--;
-    if( n == 0 ){
+    if( n == 1 ){
       return total;
     }
-    total = x * total;
-    return power(x, n, total);
+    return power(x, (n - 1), (x * total));
   }
 
 
