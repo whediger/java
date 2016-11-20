@@ -23,11 +23,11 @@ public class Abecedarian {
     }
     return true;
   }
-  
+
   public static void main(String[] args){
 
     //true test
-    boolean test = abecedarian("abejoptvz");
+    boolean test = abecedarian("abejoptz");
     System.out.println(test);
 
     //false test
