@@ -8,8 +8,6 @@ public class Anagram {
 
     if ( str1.length() != str2.length()) { return false; }
     int length = str1.length() -1;
-    System.out.println(str1);
-    System.out.println(str2);
 
     return letterMatch(str1, str2, length);
   }
@@ -18,11 +16,6 @@ public class Anagram {
 
     int str1length = str1.replaceAll( "[^" + str1.charAt(charCount) + "]", "" ).length();
     int str2length = str2.replaceAll( "[^" + str1.charAt(charCount) + "]", "" ).length();
-
-    System.out.println("str1 length " + str1length);
-    System.out.println(str1.charAt(charCount));
-    System.out.println("str2 length " + str2length);
-    System.out.println(str2.charAt(charCount));
 
     if (str1length != str2length) { return false; };
     if (charCount == 0 ) { return true; };
