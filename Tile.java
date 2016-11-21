@@ -19,9 +19,14 @@ public class Tile {
     printTile(testT);
   }
 
+  public String toString(){
+    return String.format("%c %d", this.letter, this.value);
+  }
+
   public static void main(String[] args){
     Tile myTile = new Tile('A', 1);
-    printTile(myTile);
+    String tile = myTile.toString();
+    System.out.println(tile);
     testTile();
   }
 }
