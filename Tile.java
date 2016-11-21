@@ -23,10 +23,22 @@ public class Tile {
     return String.format("%c %d", this.letter, this.value);
   }
 
+  public boolean equals(Tile that){
+    return this.letter == that.letter &&
+           this.value == that.value;
+  }
+
   public static void main(String[] args){
     Tile myTile = new Tile('A', 1);
+    Tile trueTile = new Tile('A', 1);
+    Tile falseLetterTile = new Tile('B', 1);
+    Tile falseNumberTile = new Tile('A', 3);
     String tile = myTile.toString();
     System.out.println(tile);
     testTile();
+    System.out.println("+==]========>");
+    System.out.println("true: " + myTile.equals(trueTile));
+    System.out.println("true: " + myTile.equals(falseLetterTile));
+    System.out.println("true: " + myTile.equals(falseNumberTile));
   }
 }
