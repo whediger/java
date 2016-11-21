@@ -49,6 +49,8 @@ public class Tile {
     Tile trueTile = new Tile('A', 1);
     Tile falseLetterTile = new Tile('B', 1);
     Tile falseNumberTile = new Tile('A', 3);
+    // myTile.setLetter('W');
+    // myTile.setValue(2084);
     String tile = myTile.toString();
     System.out.println(tile);
     testTile();
