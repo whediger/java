@@ -79,19 +79,28 @@ public class Card {
     return suitH;
   }
 
+  public static boolean hasFlush(int[] cards){
+    int baseCard = cards[0];
+    for (int card : cards){
+      if (card != baseCard){ return false; };
+    }
+    return true;
+  }
+
 
   // +==]========>
   public static void main(String[] args){
     Card[] deck = new Card[52];
-    Card card = new Card(2,2);
+    Card card = new Card(2,3);
     deck = card.makeDeck();
     card.printDeck(deck);
-    Card card1 = new Card(1,1);
+    Card card1 = new Card(1,3);
     Card card2 = new Card(2,3);
     Card[] cards = { card, card1, card2 };
     int[] suits = suitHist(cards);
     for (int i= 0; i < suits.length; i++){
       System.out.println(suits[i]);
     }
+    System.out.println(hasFlush(suits));
   }
 }
