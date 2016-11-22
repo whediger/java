@@ -5,19 +5,24 @@ public class Rational {
   private int numerator;
   private int denominator;
 
-  public getNumerator(){
+  public int getNumerator(){
     return this.numerator;
   }
-  public getDenominator(){
+  public int getDenominator(){
     return this.denominator;
   }
-  public setNumerator(int n){
+  public void setRationalNum(int n, int d){
+    this.numerator = n;
+    this.denominator = d;
+  }
+  public void setNumerator(int n){
     this.numerator = n;
   }
-  public setDenominator(int d){
+  public void setDenominator(int d){
     this.denominator = d;
   }
 
+  //  +==]========>
   public Rational(){
     this.numerator = 0;
     this.denominator = 1;
@@ -28,6 +33,7 @@ public class Rational {
     this.denominator = d;
   }
 
+  //  +==]========>
   private void negate(){
     this.numerator *= (-1);
   }
@@ -47,7 +53,7 @@ public class Rational {
   }
 
   private void printRational(){
-    System.out.println("This Rational number: " + this.numerator + "/" + this.denominator);
+    System.out.println("Rational number: " + this.numerator + "/" + this.denominator);
   }
 
   public String toString(){
@@ -61,7 +67,13 @@ public class Rational {
 
   private Rational add(int n, int d){
     Rational sum = new Rational(1,1);
-    sum
+    n = (n*this.denominator) + (this.numerator*d);
+    d = (this.denominator*d);
+    int lcd = sum.reduce(n, d);
+    n = n / lcd;
+    d = d / lcd;
+    sum.setRationalNum(n, d);
+    return sum;
   }
 
   //  +===]========>
@@ -76,8 +88,9 @@ public class Rational {
     System.out.println(rash2.toString());
     rash2.invert();
     System.out.println(rash2.toString());
-    Rational euclid = new Rational();
-    System.out.println(euclid.reduce(1071, 462));
-
+    Rational euclid = new Rational(45, 2084);;
+    Rational sum = euclid.add(1, 6);
+    System.out.println("the sum is: ");
+    sum.printRational();
   }
 }
