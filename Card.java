@@ -26,7 +26,7 @@ public class Card {
   }
 
   public Card[] makeDeck(){
-    Card cards = new Card[52];
+    Card[] cards = new Card[52];
     int index = 0;
     for (int suit = 0; suit<= 3; suit++){
       for (int rank = 1; rank <= 13; rank++){
@@ -34,10 +34,12 @@ public class Card {
         index++;
       }
     }
+    return cards;
   }
 
   public static void printDeck(Card[] cards){
     for (int i = 0; i < cards.length; i++){
+      if (i % 13 == 0){ System.out.println("               +==]========>");};
       System.out.println(cards[i]);
     }
   }
@@ -51,11 +53,6 @@ public class Card {
       && this.suit == that.suit;
   }
 
-  public String toString(){
-    String s = ranks[this.rank] + " of " + suits[this.suit];
-    return s;
-  }
-
   public int compareTo(Card that){
     if (this.suit < that.suit){
       return -1;
@@ -63,17 +60,38 @@ public class Card {
     if (this.suit > that.suit){
       return 1;
     }
-    if (this.rank < that.rank){
+    //&& this.rank != 1 for games where Ace is high
+    if (this.rank < that.rank && this.rank != 1){
       return -1;
     }
-    if (this.rank > that.rank){
+    //&& that.rank != 1 for games where Ace is high
+    if (this.rank > that.rank && that.rank != 1){
       return 1;
     }
     return 0;
   }
 
+  public static int[] suitHist(Card[] cards){
+    int[] suitH = new int[cards.length];
+    for ( int i = 0; i < cards.length; i++){
+      suitH[i] = cards[i].suit;
+    }
+    return suitH;
+  }
+
+
   // +==]========>
   public static void main(String[] args){
-
+    Card[] deck = new Card[52];
+    Card card = new Card(2,2);
+    deck = card.makeDeck();
+    card.printDeck(deck);
+    Card card1 = new Card(1,1);
+    Card card2 = new Card(2,3);
+    Card[] cards = { card, card1, card2 };
+    int[] suits = suitHist(cards);
+    for (int i= 0; i < suits.length; i++){
+      System.out.println(suits[i]);
+    }
   }
 }
