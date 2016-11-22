@@ -87,7 +87,6 @@ public class Card {
     return true;
   }
 
-
   // +==]========>
   public static void main(String[] args){
     Card[] deck = new Card[52];
