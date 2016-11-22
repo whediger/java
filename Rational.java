@@ -5,6 +5,19 @@ public class Rational {
   private int numerator;
   private int denominator;
 
+  public getNumerator(){
+    return this.numerator;
+  }
+  public getDenominator(){
+    return this.denominator;
+  }
+  public setNumerator(int n){
+    this.numerator = n;
+  }
+  public setDenominator(int d){
+    this.denominator = d;
+  }
+
   public Rational(){
     this.numerator = 0;
     this.denominator = 1;
@@ -46,6 +59,10 @@ public class Rational {
     return reduce(d, (n%d));
   }
 
+  private Rational add(int n, int d){
+    Rational sum = new Rational(1,1);
+    sum
+  }
 
   //  +===]========>
   public static void main(String[] args){
