@@ -10,13 +10,15 @@ public class Drawing extends Canvas {
     JFrame frame = new JFrame("my drawing");
     Canvas canvas = new Drawing();
     canvas.setSize(400, 400);
+    canvas.setBackground(Color.darkGray);
     frame.add(canvas);
     frame.pack();
     frame.setVisible(true);
   }
 
   public void paint(Graphics g) {
-    g.setColor(Color.red);
+    Color myBlue = new Color(0,162,232);
+    g.setColor(Color.blue);
     g.fillOval(100, 100, 200, 200);
 
   }
