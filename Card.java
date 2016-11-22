@@ -7,8 +7,8 @@ public class Card {
   public static final String[] SUITS = {
     "Clubs", "Diamonds", "Hearts", "Spades"};
 
-  private int rank;
-  private int suit;
+  private final int rank;
+  private final int suit;
 
   // +==]========>
   public Card(int rank, int suit){
@@ -21,8 +21,25 @@ public class Card {
     return this.rank;
   }
 
-  public int getsuit(){
+  public int getSuit(){
     return this.suit;
+  }
+
+  public Card[] makeDeck(){
+    Card cards = new Card[52];
+    int index = 0;
+    for (int suit = 0; suit<= 3; suit++){
+      for (int rank = 1; rank <= 13; rank++){
+        cards[index] = new Card(rank, suit);
+        index++;
+      }
+    }
+  }
+
+  public static void printDeck(Card[] cards){
+    for (int i = 0; i < cards.length; i++){
+      System.out.println(cards[i]);
+    }
   }
 
   public String toString() {
