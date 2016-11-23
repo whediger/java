@@ -1,7 +1,10 @@
+import java.util.Random;
+
 
 public class Deck {
 
   private Card[] cards;
+
 
   public Deck(int n){
       this.cards = new Card[n];
@@ -33,36 +36,56 @@ public class Deck {
   }
 
   public void selectionSort() {
-    for each index i{
+    //for each index i{
       //find lowset card at or to to the right of i
       //swap the ith card and lowest card found
-    }
+    //}
   }
   //helper for mergeSort
-  public Deck subDeck(int low, int high){
+  // public Deck subDeck(int low, int high){
     //Note: cards in subDeck are aliased and subject to changes in the Deck
-    Deck sub = new Deck(high - low +1);
-    for (int i = 0; i < sub.cards.length; i++) {
-      sub.cards[i] = this.cards[low + 1];
-    }
-    return sub;
+  //   Deck sub = new Deck(high - low +1);
+  //   for (int i = 0; i < sub.cards.length; i++) {
+  //     sub.cards[i] = this.cards[low + 1];
+  //   }
+  //   return sub;
+  // }
+
+  //deck shuffle methods +==]========>
+  public static int randomInt(int low, int high){
+    Random rand = new Random();
+    return low + rand.nextInt(high - low + 1); // +1 to be inclusive of high value
   }
+
   //helper for mergeSort
-  public static Deck merge(Deck d1, Deck d2){
+  //public static Deck merge(Deck d1, Deck d2){
     //create new deck large enough for all cards
 
     //use index i to keep ttrack of where we are in first deck
     //use index j for the second deck
-    int i = 0;
-    int j = 0;
+    //int i = 0;
+    //int j = 0;
     //index j traverses the result deck
-    for (int k = 0; k < result.cards.length; k++) {
+    //for (int k = 0; k < result.cards.length; k++) {
       //if d1 is empty d2 wins
       //if d2 is empty d1 wins
       //else compare 2 cards
 
       //add winner to result deck at position k
       //increment either i or j(d1 or d2)
-    }
-  }
+    //}
+  //}
+
+  //public Deck almostMergeSort(){
+    //divide the deck into two subdecks;
+    //sort the deck using selectionSort
+    //merge the two halfs and return the result
+  //}
+
+  //public Deck mergeSort(){
+    //if the deck is 0 or 1 cards return it
+    //divide the deck into two subdecks
+    // sort the subdecks using mergeSort
+    //merge the two hals and return the result
+  //}
 }

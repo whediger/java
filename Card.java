@@ -93,5 +93,11 @@ public class Card {
     //Deck class objects  +==]========>
     Deck newDeck = new Deck();
     newDeck.print();
+
+    for (int i = 0; i < 100; i++) {
+      int result;
+      result = newDeck.randomInt(7, 12);
+      System.out.println("random result: " + result);
+    }
   }
 }
