@@ -25,18 +25,6 @@ public class Card {
     return this.suit;
   }
 
-  public Card[] makeDeck(){
-    Card[] cards = new Card[52];
-    int index = 0;
-    for (int suit = 0; suit<= 3; suit++){
-      for (int rank = 1; rank <= 13; rank++){
-        cards[index] = new Card(rank, suit);
-        index++;
-      }
-    }
-    return cards;
-  }
-
   public static void printDeck(Card[] cards){
     for (int i = 0; i < cards.length; i++){
       if (i % 13 == 0){ System.out.println("               +==]========>");};
@@ -91,8 +79,8 @@ public class Card {
   public static void main(String[] args){
     Card[] deck = new Card[52];
     Card card = new Card(2,3);
-    deck = card.makeDeck();
-    card.printDeck(deck);
+    // deck = card.makeDeck();
+    // card.printDeck(deck);
     Card card1 = new Card(1,3);
     Card card2 = new Card(2,3);
     Card[] cards = { card, card1, card2 };
@@ -101,5 +89,9 @@ public class Card {
       System.out.println(suits[i]);
     }
     System.out.println(hasFlush(suits));
+
+    //Deck class objects  +==]========>
+    Deck newDeck = new Deck();
+    newDeck.print();
   }
 }
