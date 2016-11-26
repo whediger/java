@@ -36,10 +36,16 @@ public class Deck {
   }
 
   public void selectionSort() {
-    //for each index i{
-      //find lowset card at or to to the right of i
-      //swap the ith card and lowest card found
-    //}
+    Card temp;
+    for (int i = 0; i < this.cards.length; i++){
+      for (int j = (this.cards.length - i); j < (this.cards.length); j++ ){
+          if ( this.cards[i].compareTo(this.cards[j]) == 1) {
+            temp = this.cards[i];
+            this.cards[i] = this.cards[j];
+            this.cards[j] = temp;
+          }
+      }
+    }
   }
   //helper for mergeSort
   // public Deck subDeck(int low, int high){
@@ -55,6 +61,16 @@ public class Deck {
   public static int randomInt(int low, int high){
     Random rand = new Random();
     return low + rand.nextInt(high - low + 1); // +1 to be inclusive of high value
+  }
+
+  public void shuffle() {
+    Card temp;
+    for (int i = 0; i < this.cards.length; i++){
+      int rand = randomInt(1, (this.cards.length - 1));
+      temp = this.cards[rand];
+      this.cards[rand] = this.cards[i];
+      this.cards[i] = temp;
+    }
   }
 
   //helper for mergeSort

@@ -92,12 +92,18 @@ public class Card {
 
     //Deck class objects  +==]========>
     Deck newDeck = new Deck();
+    System.out.println(" new deck +==]========> ");
     newDeck.print();
-
-    for (int i = 0; i < 100; i++) {
-      int result;
-      result = newDeck.randomInt(7, 12);
-      System.out.println("random result: " + result);
-    }
+    System.out.println(" shuffle +==]========> ");
+    newDeck.shuffle();
+    newDeck.print();
+    System.out.println(" selection sorted +==]========> ");
+    newDeck.selectionSort();
+    newDeck.print();
+    // for (int i = 0; i < 100; i++) {
+    //   int result;
+    //   result = newDeck.randomInt(7, 12);
+    //   System.out.println("random result: " + result);
+    // }
   }
 }
