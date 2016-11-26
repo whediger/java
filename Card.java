@@ -49,13 +49,15 @@ public class Card {
       return 1;
     }
     //&& this.rank != 1 for games where Ace is high
-    if (this.rank < that.rank && this.rank != 1){
+    if (this.rank < that.rank){
       return -1;
     }
     //&& that.rank != 1 for games where Ace is high
-    if (this.rank > that.rank && that.rank != 1){
+    if (this.rank > that.rank){
       return 1;
     }
+
+
     return 0;
   }
 
@@ -100,6 +102,7 @@ public class Card {
     System.out.println(" selection sorted +==]========> ");
     newDeck.selectionSort();
     newDeck.print();
+
     // for (int i = 0; i < 100; i++) {
     //   int result;
     //   result = newDeck.randomInt(7, 12);

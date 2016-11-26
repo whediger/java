@@ -38,13 +38,14 @@ public class Deck {
   public void selectionSort() {
     Card temp;
     for (int i = 0; i < this.cards.length; i++){
-      for (int j = (this.cards.length - i); j < (this.cards.length); j++ ){
-          if ( this.cards[i].compareTo(this.cards[j]) == 1) {
+      for (int j = (i + 1); j < (this.cards.length); j++){
+          if (this.cards[j].compareTo(this.cards[i]) == 1) {
             temp = this.cards[i];
             this.cards[i] = this.cards[j];
             this.cards[j] = temp;
           }
       }
+
     }
   }
   //helper for mergeSort
