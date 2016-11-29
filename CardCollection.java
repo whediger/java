@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Random;
 
 public class CardCollection {
 
@@ -66,6 +66,19 @@ public class CardCollection {
     for (int i = size() -1; i > 0; i--){
       int j = random.nextInt(i);
       swapCards(i, j);
+    }
+  }
+}
+
+public class Deck extends CardCollection {
+
+  public Deck(String label){
+    super(label);
+
+    for (int suit = 0; suit <=3; suit++) {
+      for (int rank = 1; rank <= 13; rank++) {
+        cards.add(new Card(rank. suit));
+      }
     }
   }
 }
