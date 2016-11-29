@@ -28,9 +28,9 @@ public class Deck {
   }
 
   public Deck subDeck(int low, int high){
-    Deck sub = new Deck(high - low -1);
+    Deck sub = new Deck(high - low);
     for (int i = 0; i < sub.cards.length; i++){
-      sub.cards[i] = this.cards[low +1];
+      sub.cards[i] = this.cards[i + low];
     }
     return sub;
   }
@@ -58,6 +58,60 @@ public class Deck {
   //   return sub;
   // }
 
+  //helper for mergeSort
+  public static Deck merge(Deck d1, Deck d2){
+    // create new deck large enough for all cards
+    Deck result = new Deck(52);
+
+    // use index i to keep track of where we are in first deck
+    int i = 0;
+    // use index j for the second deck
+    int j = 0;
+
+    //index k traverses the result deck
+    for (int k = 0; k < result.cards.length; k++) {
+      if (i == (d1.cards.length)){
+        result.cards[k] = d2.cards[j];
+        j++;
+      } else if (j == (d2.cards.length)) {
+        result.cards[k] = d1.cards[i];
+        i++;
+      } else {
+          if (d1.cards[i].compareTo(d2.cards[j]) == 1){
+            result.cards[k] = d1.cards[i];
+            i++;
+          } else {
+            result.cards[k] = d2.cards[j];
+            j++;
+          }
+      }
+    }
+    return result;
+  }
+
+  public Deck almostMergeSort(){
+    // !almost because it uses the selectionSort method!
+    // divide the deck into two subdecks;
+    // sort the deck using selectionSort
+    // merge the two halfs and return the result
+
+    Deck result = new Deck();
+    int firstHalf = this.cards.length / 2;
+    Deck halfOne = this.subDeck(0, firstHalf);
+    Deck halfTwo = this.subDeck(firstHalf, this.cards.length);
+    halfOne.selectionSort();
+    halfTwo.selectionSort();
+    result = merge(halfOne, halfTwo);
+    return result;
+  }
+
+  //public Deck mergeSort(){
+    //if the deck is 0 or 1 cards return it
+    //divide the deck into two subdecks
+    // sort the subdecks using mergeSort
+    //merge the two hals and return the result
+  //}
+
   //deck shuffle methods +==]========>
   public static int randomInt(int low, int high){
     Random rand = new Random();
@@ -73,36 +127,4 @@ public class Deck {
       this.cards[i] = temp;
     }
   }
-
-  //helper for mergeSort
-  //public static Deck merge(Deck d1, Deck d2){
-    //create new deck large enough for all cards
-
-    //use index i to keep ttrack of where we are in first deck
-    //use index j for the second deck
-    //int i = 0;
-    //int j = 0;
-    //index j traverses the result deck
-    //for (int k = 0; k < result.cards.length; k++) {
-      //if d1 is empty d2 wins
-      //if d2 is empty d1 wins
-      //else compare 2 cards
-
-      //add winner to result deck at position k
-      //increment either i or j(d1 or d2)
-    //}
-  //}
-
-  //public Deck almostMergeSort(){
-    //divide the deck into two subdecks;
-    //sort the deck using selectionSort
-    //merge the two halfs and return the result
-  //}
-
-  //public Deck mergeSort(){
-    //if the deck is 0 or 1 cards return it
-    //divide the deck into two subdecks
-    // sort the subdecks using mergeSort
-    //merge the two hals and return the result
-  //}
 }

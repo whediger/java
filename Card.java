@@ -43,18 +43,18 @@ public class Card {
 
   public int compareTo(Card that){
     if (this.suit < that.suit){
-      return -1;
+      return 1;
     }
     if (this.suit > that.suit){
-      return 1;
+      return -1;
     }
     //&& this.rank != 1 for games where Ace is high
     if (this.rank < that.rank){
-      return -1;
+      return 1;
     }
     //&& that.rank != 1 for games where Ace is high
     if (this.rank > that.rank){
-      return 1;
+      return -1;
     }
 
 
@@ -94,13 +94,19 @@ public class Card {
 
     //Deck class objects  +==]========>
     Deck newDeck = new Deck();
+
     System.out.println(" new deck +==]========> ");
     newDeck.print();
-    System.out.println(" shuffle +==]========> ");
+    // System.out.println(" shuffle +==]========> ");
     newDeck.shuffle();
+    // newDeck.print();
+    // System.out.println(" selection sorted +==]========> ");
+    // newDeck.selectionSort();
+    // newDeck.print();
+    System.out.println("shuffled deck +==]========>");
     newDeck.print();
-    System.out.println(" selection sorted +==]========> ");
-    newDeck.selectionSort();
+    System.out.println(" new deck sorted +==]========> ");
+    newDeck = newDeck.almostMergeSort();
     newDeck.print();
 
     // for (int i = 0; i < 100; i++) {
