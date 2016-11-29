@@ -15,6 +15,12 @@ public class CardCollection {
 
   // +==]========>
 
+  public Card getCard(int i){
+    return cards.get(i);
+  }
+
+  // +==]========>
+
   public void addCard(Card card){
     cards.add(card);
   }
@@ -26,6 +32,12 @@ public class CardCollection {
   public Card popCard() {
     int i = size() -1;
     return popCard(i);
+  }
+
+  //gets last card without removing it
+  public Card last(){
+    int i = size() -1;
+    return cards.get(i);
   }
 
   public int size(){
