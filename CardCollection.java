@@ -60,4 +60,12 @@ public class CardCollection {
     cards.set(i, cards.get(j));
     cards.set(j, temp);
   }
+
+  public void shuffle(){
+    Random rand = new Random();
+    for (int i = size() -1; i > 0; i--){
+      int j = random.nextInt(i);
+      swapCards(i, j);
+    }
+  }
 }
