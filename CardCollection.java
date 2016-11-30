@@ -146,6 +146,19 @@ public class CardCollection {
         hand.addCard(card);
       }
     }
+
+    public static boolean cardMatches(Card card1, Card card2) {
+      if (card1.getSuit() == card2.getSuit()) {
+        return true;
+      }
+      if (card1.getRank() == card2,getRank()) {
+        return true;
+      }
+      if (card1.getRank() ==8 ) {
+        return true;
+      }
+      return false;
+    }
   }
 
   public static void main(String[] args){
