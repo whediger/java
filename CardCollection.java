@@ -135,6 +135,17 @@ public class CardCollection {
       }
       return null;
     }
+
+    public Card drawForMatch(Eights eights, Card prev){
+      while (true){
+        Card card = eights.draw();
+        System.out.println(name + " draws " + card);
+        if (cardMatches(card, prev)) {
+          return card;
+        }
+        hand.addCard(card);
+      }
+    }
   }
 
   public static void main(String[] args){
