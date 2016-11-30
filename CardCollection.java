@@ -9,7 +9,7 @@ public class CardCollection {
   // +==]========>
 
   private CardCollection(String label){
-    this.label = lable;
+    this.label = label;
     this.cards = new ArrayList<Card>();
   }
 
@@ -17,6 +17,10 @@ public class CardCollection {
 
   public Card getCard(int i){
     return cards.get(i);
+  }
+
+  public String getLabel(){
+    return this.label;
   }
 
   // +==]========>
@@ -55,6 +59,13 @@ public class CardCollection {
     }
   }
 
+  public void dealAll(CardCollection that){
+    for (int i = 0; i < that.size(); i++) {
+      Card card = popCard();
+      that.addCard(card);
+    }
+  }
+
   public void swapCards(int i, int j){
     Card temp = cards.get(i);
     cards.set(i, cards.get(j));
@@ -64,21 +75,61 @@ public class CardCollection {
   public void shuffle(){
     Random rand = new Random();
     for (int i = size() -1; i > 0; i--){
-      int j = random.nextInt(i);
+      int j = rand.nextInt(i);
       swapCards(i, j);
     }
   }
-}
 
-public class Deck extends CardCollection {
+  public class Deck extends CardCollection {
 
-  public Deck(String label){
-    super(label);
+    public Deck(String label){
+      super(label);
 
-    for (int suit = 0; suit <=3; suit++) {
-      for (int rank = 1; rank <= 13; rank++) {
-        cards.add(new Card(rank. suit));
+      for (int suit = 0; suit <=3; suit++) {
+        for (int rank = 1; rank <= 13; rank++) {
+          cards.add(new Card(rank, suit));
+        }
       }
     }
+  }
+
+  public class Hand extends CardCollection {
+
+    public Hand(String label){
+      super(label);
+    }
+
+    public void display() {
+      System.out.println(getLabel() + ": ");
+      for (int i = 0; i < size(); i++) {
+        System.out.println(getCard(i));
+      }
+      System.out.println();
+    }
+  }
+
+  public class Player {
+
+    private String name;
+    private Hand hand;
+
+    public Player(Strig name){
+      this.name = name;
+      this.hand = new Hand(name);
+    }
+  }
+
+  public static void main(String[] args){
+
+    Deck deck = new Deck("Deck");
+    deck.shuffle();
+
+    Hand hand = new Hand("Hand");
+    deck.deal(hand, 5);
+    hand.display();
+
+    Hand drawPile = new Hand("Draw Pile");
+    deck.dealAll(drawPile);
+    System.out.printf("Draw pile has %d cards. \n", drawPile.size());
   }
 }
