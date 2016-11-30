@@ -7,10 +7,18 @@ class Circle extends TwoDShape {
   }
 
   Circle(double w, double h, String n) {
-    super(w, h, "circle");
+    super(w, h, "ellipse");
+  }
+
+  Circle(double w, double h){
+    super(w, h, "ellipse");
   }
 
   Circle(double x, String n){
+    super(x, "circle");
+  }
+
+  Circle(double x){
     super(x, "circle");
   }
 
