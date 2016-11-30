@@ -1,7 +1,7 @@
 
 
 //Use dynamic method dispatch
-class TwoDShape {
+abstract class TwoDShape {
   private double width;
   private double height;
   private String name;
@@ -42,8 +42,5 @@ class TwoDShape {
     System.out.println("Width and height are " +
                         width + " and " + height);
   }
-  double area() {
-    System.out.println("area() must be overridden");
-    return 0.0;
-  }
+  abstract double area();
 }
