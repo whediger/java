@@ -204,6 +204,17 @@ public class CardCollection {
 
       in = new Scanner(System.in);
     }
+
+    public boolean isDone(){
+      return one.getHand().empty() || two.getHand().empty();
+    }
+
+    public class reshuffle() {
+      Card prev = discardPile.popCard();
+      discardPile.dealAll(drawPile);
+      discardPile.addCard(prev);
+      drawPile.shuffle();
+    }
   }
 
   public static void main(String[] args){
