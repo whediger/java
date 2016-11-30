@@ -251,19 +251,30 @@ public class CardCollection {
       System.out.println(player.getName() + " plays " + next);
       System.out.println();
     }
+
+    public void playgame() {
+      Player player = one;
+
+      //keep playing until there is a winner
+      while (!isDone()){
+        displayState();
+        waitForUser();
+        takeTurn(player);
+        player = nextplayer(player);
+      }
+
+      //display the final score
+      System.out.println("Player one score:");
+      one.displayScore();
+      System.out.println("Player two score:");
+      two.displayScore();
+    }
+    
+    public static void main(String[] args){
+      Eights game = new Eights();
+      game.playGame();
+    }
   }
 
-  public static void main(String[] args){
 
-    Deck deck = new Deck("Deck");
-    deck.shuffle();
-
-    Hand hand = new Hand("Hand");
-    deck.deal(hand, 5);
-    hand.display();
-
-    Hand drawPile = new Hand("Draw Pile");
-    deck.dealAll(drawPile);
-    System.out.printf("Draw pile has %d cards. \n", drawPile.size());
-  }
 }
