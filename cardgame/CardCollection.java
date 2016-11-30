@@ -263,13 +263,17 @@ public class CardCollection {
         player = nextplayer(player);
       }
 
+      public void displayScore() {
+        System.out.println(name + " has " + score() + " points");
+      }
+
       //display the final score
       System.out.println("Player one score:");
       one.displayScore();
       System.out.println("Player two score:");
       two.displayScore();
     }
-    
+
     public static void main(String[] args){
       Eights game = new Eights();
       game.playGame();
