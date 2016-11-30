@@ -215,6 +215,42 @@ public class CardCollection {
       discardPile.addCard(prev);
       drawPile.shuffle();
     }
+
+    public Card draw() {
+      if (drawPile.empty()) {
+        reshuffle();
+      }
+      return drawPile.popCard();
+    }
+
+    public Player nextPlayer(Player current){
+      if (current == one) {
+        return two;
+      } else {
+        return one;
+      }
+    }
+
+    public void displayState() {
+      one.display();
+      two.display();
+      discardPile.display();
+      System.out.println("Draw pile:");
+      System.out.println(drawPile.size() + " cards");
+    }
+
+    public void waitForUser() {
+      in.nextLine();
+    }
+
+    public void takeTurn(Player player){
+      Card prev = discardPile.last();
+      Card next = player.play(this, prev);
+      discardPile.addCard(next);
+
+      System.out.println(player.getName() + " plays " + next);
+      System.out.println();
+    }
   }
 
   public static void main(String[] args){
