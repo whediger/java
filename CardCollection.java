@@ -113,7 +113,7 @@ public class CardCollection {
     private String name;
     private Hand hand;
 
-    public Player(Strig name){
+    public Player(String name){
       this.name = name;
       this.hand = new Hand(name);
     }
@@ -151,7 +151,7 @@ public class CardCollection {
       if (card1.getSuit() == card2.getSuit()) {
         return true;
       }
-      if (card1.getRank() == card2,getRank()) {
+      if (card1.getRank() == card2.getRank()) {
         return true;
       }
       if (card1.getRank() ==8 ) {
@@ -160,7 +160,7 @@ public class CardCollection {
       return false;
     }
 
-    public int score {
+    public int score() {
       int sum = 0;
       for (int i = 0; i <hand.size(); i++) {
         Card card = hand.getCard(i);
@@ -174,6 +174,35 @@ public class CardCollection {
         }
       }
       return sum;
+    }
+  }//Player class
+
+  public class Eights {
+
+    private Player one;
+    private Player two;
+    private Hand drawPile;
+    private Hand discardPile;
+    private Scanner in;
+
+    public Eights(){
+      Deck deck = new Deck("Deck");
+      deck.shuffle();
+
+      int handSize = 5;
+      one = new Player("Allen");
+      deck.deal(one.getHand(), handSize);
+
+      two = new Player("Chris");
+      deck.deal(one.getHand(), handSize);
+
+      discardPile = new Hand("Discards");
+      deck.deal(discardPile, 1);
+
+      drawPile = new Hand("Draw Pile");
+      deck.dealAll(drawPile);
+
+      in = new Scanner(System.in);
     }
   }
 
