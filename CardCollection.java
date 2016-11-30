@@ -117,6 +117,15 @@ public class CardCollection {
       this.name = name;
       this.hand = new Hand(name);
     }
+
+    public Card play(Eights eights, Card prev){
+      Card card  = searchForMatch(prev);
+      if (card == null) {
+        card = drawMatch(eights, prev);
+      }
+      return card;
+    }
+    
   }
 
   public static void main(String[] args){
