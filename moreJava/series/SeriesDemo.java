@@ -1,5 +1,6 @@
 
 class SeriesDemo {
+
   public static void main(String args[]){
     ByTwos ob = new ByTwos();
 

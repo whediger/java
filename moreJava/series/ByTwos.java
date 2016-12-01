@@ -2,10 +2,12 @@
 class ByTwos implements Series {
   int start;
   int val;
+  int prev;
 
   ByTwos(){
     start = 0;
     val = 0;
+    prev = -2;
   }
 
   public int getNext(){
@@ -20,5 +22,9 @@ class ByTwos implements Series {
   public void setStart(int x){
     start = x;
     val = x;
+  }
+
+  int getPrevious(){
+    return prev;
   }
 }
