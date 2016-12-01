@@ -1,5 +1,6 @@
 package bookpackext;
 
+import bookpack.*;
 
 class ExtBook extends bookpack.Book {
   private String publisher;
