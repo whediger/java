@@ -47,7 +47,7 @@ class SeriesDemo {
       System.out.println("Next ByTwos value is: " + ob.getNext());
 
       ob = threeOb;
-      System.out.println("Next ByThrees vlaue is: " + ob.getNext());
+      System.out.println("Next ByThrees value is: " + ob.getNext());
     }
   }
 }
