@@ -1,5 +1,5 @@
 
-public class QueueFullException(int s) extends Exception {
+public class QueueFullException extends RuntimeException {
   int size;
 
   QueueFullException(int s) { size = s; }
