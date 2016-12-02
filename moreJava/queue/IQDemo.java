@@ -54,3 +54,32 @@ class CircularQueue implements ICharQ {
       return ch;
   }
 }
+
+class DynQueue implements ICharQ {
+  private char q[]; //holds the queue
+  private int putLoc, getLoc; //get and put indices
+
+  public DynQueue(int size){
+    q = new char[size];//the Queue
+    putLoc = getLoc = 0; //set indices
+  }
+
+  public void put(char ch){
+    if(putLoc == q.length){
+      char t[] = new char[q.length * 2];
+
+      for (int i = 0; i < q.length; i++) t[i] = q[i];
+
+      q = t;
+    }
+    q[putLoc++] = ch;
+  }
+
+  public chr get(){
+    if (getLoc == putLoc) {
+      System.out.println(" - Queue is empty.");
+      return (char) 0;
+    }
+    return q[getLoc++];
+  }
+}
