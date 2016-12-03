@@ -3,39 +3,24 @@ import java.io.*;
 class ShowFile {
   public static void main(String args[])
   {
-      int i;
-      FileInputStream fin;
+    int i;
 
-      //first make sure file has been specified
-      if (args.length != 1) {
-        System.out.println("Usage: ShowFile File.");
-        return;
-      }
+    if (args.length != 1) {
+      System.out.println("Usage: ShowFile filename");
+      return;
+    }
 
-      try {
-        fin = new FileInputStream(args[0]);
-      } catch (FileNotFoundException exc) {
-        System.out.println("File Not Found");
-        return;
-      }
+    //this code uses a try-with-resources to open
+    //then automatically closes it when the try block is left
+    try (FileInputStream fin = new FileInputStream(args[0])) {
 
-      try {
-        //read bytes until EOF is encountered
-        do {
-          i = fin.read();
-          if(i != -1) System.out.print((char) i);
-        } while (i != -1);
-        System.out.println();
-      } catch (IOException exc) {
-        System.out.println("Error reading file.");
-      } finally {
-        try {
-          fin.close();
-        } catch (IOException exc) {
-          System.out.println("Error closing file.");
-        }
-      }
+      do {
+        i = fin.read();
+        if(i != -1) System.out.print((char) i);
+      } while(i != -1);
 
-
+    } catch (IOException exc){
+      System.out.println("I/O Error: " + exc);
+    }
   }
 }
