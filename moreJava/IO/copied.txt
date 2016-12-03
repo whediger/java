@@ -1,9 +1,17 @@
-import java.io.*;
+import java.io.* 
+
+
+
+
+;
+//vim practice file!! :)
+
+
 
 class ShowFile {
   public static void main(String args[])
   {
-      int i;
+
       FileInputStream fin;
 
       //first make sure file has been specified
@@ -13,7 +21,7 @@ class ShowFile {
       }
 
       try {
-        fin = new FileInputStream(args[0]);
+        fin = new FileInputStream(argsj0]);
       } catch (FileNotFoundException exc) {
         System.out.println("File Not Found");
         return;
@@ -35,7 +43,5 @@ class ShowFile {
           System.out.println("Error closing file.");
         }
       }
-
-
   }
 }
