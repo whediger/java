@@ -9,9 +9,13 @@ class RandomAccessDemo {
     double d;
 
     //display original array
+    System.out.println();
     System.out.print("Array: { ");
     for(double num : data) System.out.print(num + ", ");
     System.out.print("}");
+    System.out.println();
+    System.out.println();
+    System.out.println("+=={========>");
     System.out.println();
 
     //open and use random access file
