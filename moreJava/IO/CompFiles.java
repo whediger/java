@@ -38,6 +38,3 @@ class CompFiles {
     }
   }
 }
-
-
-//extra stuff to test CompFiles
