@@ -32,6 +32,15 @@ class MoreThreads {
     MyThread mt1 = new MyThread("Child #1");
     MyThread mt2 = new MyThread("Child #2");
     MyThread mt3 = new MyThread("Child #3");
+    MyThread mt4 = new MyThread("Child #4");
+    MyThread mt5 = new MyThread("Child #5");
+    MyThread mt6 = new MyThread("Child #6");
+    MyThread mt7 = new MyThread("Child #7");
+    MyThread mt8 = new MyThread("Child #8");
+    MyThread mt9 = new MyThread("Child #9");
+    MyThread mt10 = new MyThread("Child #10");
+    MyThread mt11 = new MyThread("Child #11");
+    MyThread mt12 = new MyThread("Child #12");
 
     for (int i = 0; i < 50; i++) {
       System.out.print(".");
