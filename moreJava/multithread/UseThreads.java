@@ -22,9 +22,9 @@ class MyThread implements Runnable {
     }
     System.out.println(thrdName + " terminating.");
   }
-}
+}  
 
-class UseThreads {
+class UseTheads {
   public static void main(String args[])
   {
     System.out.println("Main thread starting.");
