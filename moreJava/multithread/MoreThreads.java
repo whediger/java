@@ -42,14 +42,28 @@ class MoreThreads {
     MyThread mt11 = new MyThread("Child #11");
     MyThread mt12 = new MyThread("Child #12");
 
-    for (int i = 0; i < 50; i++) {
+    do {
       System.out.print(".");
       try {
         Thread.sleep(100);
       } catch (InterruptedException exc) {
         System.out.println("Main thread interrupted.");
       }
-    }
+    } while
+    (
+        mt1.thrd.isAlive() ||
+        mt2.thrd.isAlive() ||
+        mt3.thrd.isAlive() ||
+        mt4.thrd.isAlive() ||
+        mt5.thrd.isAlive() ||
+        mt6.thrd.isAlive() ||
+        mt7.thrd.isAlive() ||
+        mt8.thrd.isAlive() ||
+        mt9.thrd.isAlive() ||
+        mt10.thrd.isAlive() ||
+        mt11.thrd.isAlive() ||
+        mt12.thrd.isAlive()
+    );
     System.out.println("Main thread terminating.");
   }
 }
