@@ -1,5 +1,7 @@
-
 //find solution to qudratic equation
+import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
+
 class Quadratic {
   public static void main(String args[])
   {
@@ -12,11 +14,11 @@ class Quadratic {
     c = -3;
 
     //find first solution
-    x = (-b - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+    x = (-b - sqrt(pow(b, 2) - 4 * a * c)) / (2 * a);
     System.out.println("First solution: " + x);
 
     // find second solution
-    x = (-b - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+    x = (-b - sqrt(pow(b, 2) - 4 * a * c)) / (2 * a);
     System.out.println("Second solution: " + x);
   }
 }
