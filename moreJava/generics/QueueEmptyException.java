@@ -1,11 +1,6 @@
-//queue full exception
-
-public class QueueFullException extends Exception {
-  int size;
-
-  QueueFullException(int s) { size = s; }
-
+//Queue empty Exception
+public class QueueEmptyException extends Exception {
   public String toString() {
-    return "\nQueue is full. Max size is " + size;
+    return "\nQueue is empty";
   }
 }
