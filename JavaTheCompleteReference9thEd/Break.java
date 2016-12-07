@@ -28,6 +28,7 @@ class Break {
       System.out.print("Pass " + i + ": ");
       for (int j = 0; j < 100; j++) {
         if(j == 10) break outer; //breaks out of both loops
+        System.out.print(j + " ");
       }
     }
   }
