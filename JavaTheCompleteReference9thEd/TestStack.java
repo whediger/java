@@ -13,7 +13,7 @@ class Stack {
   //push to Stack
   void push(int num) {
     if(tos >= 9)
-      System.out.println("stack over-full error! (ha)");
+      System.out.println("stack over-full error! (ha ;D )");
     else
       stack[++tos] = num;
   }
