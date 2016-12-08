@@ -1,6 +1,10 @@
 
 //varargs refresher
 
+//Note: vararg params CAN BE EMPTY. so an empty param call is valid for a vararg
+//as a result, it can be ambiguous. If more than one signiture contains varargs and a call
+//is made with no params the compiler has no way to segrigate whic signiture is correct!!! 
+
 class VarArgs {
   static void VaTest(int ... v){
     System.out.println("there are " + v.length + " arguments");
