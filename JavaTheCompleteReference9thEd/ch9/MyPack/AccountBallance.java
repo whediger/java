@@ -1,22 +1,23 @@
 
 package MyPack;
 
-class Ballance {
-  String name;
-  Double ballance;
-
-  Ballance(String n, Double bal){
-    name = n;
-    ballance = bal;
-  }
-
-  void show(){
-    if (ballance > 0) {
-      System.out.print("-->");
-      System.out.println(name + " $" + ballance);
-    }
-  }
-}
+//put into own class and made public
+// class Ballance {
+//   String name;
+//   Double ballance;
+//
+//   Ballance(String n, Double bal){
+//     name = n;
+//     ballance = bal;
+//   }
+//
+//   void show(){
+//     if (ballance > 0) {
+//       System.out.print("-->");
+//       System.out.println(name + " $" + ballance);
+//     }
+//   }
+// }
 
 
 
