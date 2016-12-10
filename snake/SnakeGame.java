@@ -13,13 +13,16 @@ public class SnakeGame extends Canvas{
   static final int FRAME_WIDTH = 500;
   static final int TILE_SIZE = 10; //value for height and width of tiles.
 
+  JFrame frm;
+  Canvas c;
+
+  Canvas apple;
   public int appleX;
   public int appleY;
 
-  JFrame frm;
-  Canvas c;
-  Canvas apple;
-  Canvas snake;
+  Canvas snakeHead;
+  public int snakeLength = 3;
+  Canvas snakeBody;
 
   public void startGame(){
     frm = new JFrame("Snake Game");
@@ -40,8 +43,32 @@ public class SnakeGame extends Canvas{
 
   }
 
+  public void moveSnake() {
+
+  }
+
   public void addSnake() {
-    snake = new SnakeGame();
+    snakeHead = new SnakeGame();
+    snakeHead.setSize(TILE_SIZE, TILE_SIZE);
+
+    int startX = 200;
+    int startY = 100;
+
+    snakeHead.setLocation(startX,startY); //starts at same location
+    snakeHead.setBackground(Color.BLUE);
+
+    frm.add(snakeHead);
+
+    for (int i = 1; i <= snakeLength; i++) {
+      snakeBody = new SnakeGame();
+      snakeBody.setSize(TILE_SIZE, TILE_SIZE);
+      snakeBody.setBackground(Color.BLUE);
+      snakeBody.setLocation((startX - (10*i)), startY);
+      frm.add(snakeBody);
+    }
+
+
+    System.out.println("snake length: " + snakeLength);
 
   }
 
