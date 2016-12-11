@@ -10,13 +10,13 @@ import javax.swing.*;
 import javax.swing.JFrame;
 
 
-class PaintPanel extends JPanel {
+class drawSnake extends JPanel {
   Insets ins;
 
   public int dotX = 200;
   public int dotY = 100;
 
-  PaintPanel() {
+  drawSnake() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
   }
@@ -37,13 +37,13 @@ public class Dot implements KeyListener, ActionListener {
   private final int TILE_SIZE = 10; //value for height and width of tiles.
 
   JFrame frm;
-  PaintPanel pp;
+  drawSnake pp;
 
   Canvas dot;
 
   public void start() {
     frm = new JFrame("Dot Game");
-    pp = new PaintPanel();
+    pp = new drawSnake();
 
     frm.setSize(FRAME_HEIGHT, FRAME_WIDTH);
     frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,6 +81,17 @@ public class Dot implements KeyListener, ActionListener {
     // System.out.println("key typed: " + key);
   }
 
+  public void checkCollision(){
+    if (pp.dotX <= 0)
+      pp.dotX = 0;
+    if (pp.dotX >= FRAME_WIDTH-12)
+      pp.dotX = FRAME_WIDTH - 12;
+    if (pp.dotY >= FRAME_HEIGHT -34)
+      pp.dotY = FRAME_HEIGHT - 34;
+    if (pp.dotY <= 0)
+      pp.dotY = 0;
+  }
+
 
   //right is 39
   //left is 37
@@ -96,6 +107,7 @@ public class Dot implements KeyListener, ActionListener {
     } else if (key == 40){
       pp.dotY += 10;
     }
+    checkCollision();
   }
 
   public static void main(String args[])
