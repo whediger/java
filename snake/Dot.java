@@ -48,10 +48,11 @@ class Snake extends JPanel {
   }
 
   public void randApple(){
+    System.out.println("rand apple called");
     Random rand = new Random();
     //TODO: replace with an enum for all values
-    appleX = rand.nextInt(500 - 40) + 20;
-    appleY = rand.nextInt(500 - 74) + 20;
+    appleX = (rand.nextInt(50 - 4) + 2)*10;
+    appleY = (rand.nextInt(50 - 8) + 2)*10;
   }
 
   private void drawSnake(Graphics g){
@@ -121,34 +122,45 @@ public class Dot implements KeyListener, ActionListener {
   public void checkCollision(){
     if (pp.dotX[0] <= 0)
       pp.dotX[0] = 0;
-    if (pp.dotX[0] >= FRAME_WIDTH-12)
-      pp.dotX[0] = FRAME_WIDTH - 12;
-    if (pp.dotY[0] >= FRAME_HEIGHT -34)
-      pp.dotY[0] = FRAME_HEIGHT - 34;
+    if (pp.dotX[0] >= FRAME_WIDTH-10)
+      pp.dotX[0] = FRAME_WIDTH - 10;
+    if (pp.dotY[0] >= FRAME_HEIGHT -30)
+      pp.dotY[0] = FRAME_HEIGHT - 30;
     if (pp.dotY[0] <= 0)
       pp.dotY[0] = 0;
   }
 
+  public void eatApple(){
+    System.out.println("eat dotX " + pp.dotX[0] + " dotY[0] " + pp.dotY[0]);
+    System.out.println("appleX " + pp.appleX + " appleY " + pp.appleY);
+    if(pp.appleX == pp.dotX[0] && pp.appleY == pp.dotY[0]){
+      pp.randApple();
+      pp.snakeLength++;
+      pp.repaint();
+    }
 
-  //right is 39
-  //left is 37
-  //up is 38
-  //down is 40
+  }
+
   public void move(int key) {
+    //right is 39
     if (key == 39){
       moveBody();
       pp.dotX[0] += 10;
+    //left is 37
     } else if (key == 37){
       moveBody();
       pp.dotX[0] -= 10;
+    //up is 38
     } else if (key == 38){
       moveBody();
       pp.dotY[0] -= 10;
+    //down is 40
     } else if (key == 40){
       moveBody();
       pp.dotY[0] += 10;
     }
     checkCollision();
+    eatApple();
   }
   public void moveBody(){
     for (int i = pp.snakeLength; i > 0 ; i--) {
