@@ -3,26 +3,38 @@ package snake;
 
 import java.awt.*;
 import java.awt.Canvas;
-import java.awt.Graphics;
 import javax.swing.JFrame;
 import java.util.Random;
+import javax.swing.Timer;//to add the delay
 
-public class SnakeGame extends Canvas{
+public class SnakeGame extends Canvas {
 
-  static final int FRAME_HEIGHT = 500;
-  static final int FRAME_WIDTH = 500;
-  static final int TILE_SIZE = 10; //value for height and width of tiles.
+  private final int FRAME_HEIGHT = 500;
+  private final int FRAME_WIDTH = 500;
+  private final int TILE_SIZE = 10; //value for height and width of tiles.
+  private final int DELAY = 150;
+
+  public  boolean playGame = true;
 
   JFrame frm;
   Canvas c;
 
   Canvas apple;
-  public int appleX;
-  public int appleY;
+  private int appleX;
+  private int appleY;
 
-  Canvas snakeHead;
-  public int snakeLength = 3;
+  Canvas snake;
+  private int snakeLength = 3;
+  private int snakeMax = (500*500) - (10*10);
+  private int snakeX[] = new int[snakeMax];
+  private int snakeY[] = new int[snakeMax];
+
   Canvas snakeBody;
+
+  private boolean moveRight = true;
+  private boolean moveLeft = false;
+  private boolean moveUp = false;
+  private boolean moveDown = false;
 
   public void startGame(){
     frm = new JFrame("Snake Game");
@@ -38,33 +50,51 @@ public class SnakeGame extends Canvas{
 
     addSnake();
 
+    moveSnake();
+
     frm.add(c);
     frm.setVisible(true);
+
 
   }
 
   public void moveSnake() {
 
+    if(moveRight == true){
+      int move = snakeX[0] + TILE_SIZE;
+      for(int i = snakeLength; i >= 0; i--){
+        if (i == 0){
+          snakeX[0] = move;
+          System.out.println("snakeX[0]: " + snakeX[0]);
+          break;
+        }
+        snakeX[i] = snakeX[(i - 1)];
+        System.out.println("snakeX["+i+"]: " + snakeX[i]);
+        snake.setLocation(snakeX[i], snakeY[i]);
+      }
+    }
   }
 
   public void addSnake() {
-    snakeHead = new SnakeGame();
-    snakeHead.setSize(TILE_SIZE, TILE_SIZE);
+    snakeX[0] = 200;
+    snakeY[0] = 100;
 
-    int startX = 200;
-    int startY = 100;
+    snake = new SnakeGame();
+    snake.setSize(TILE_SIZE, TILE_SIZE);
 
-    snakeHead.setLocation(startX,startY); //starts at same location
-    snakeHead.setBackground(Color.BLUE);
+    snake.setLocation(snakeX[0],snakeY[0]); //starts at same location
+    snake.setBackground(Color.BLUE);
 
-    frm.add(snakeHead);
+    frm.add(snake);
 
     for (int i = 1; i <= snakeLength; i++) {
-      snakeBody = new SnakeGame();
-      snakeBody.setSize(TILE_SIZE, TILE_SIZE);
-      snakeBody.setBackground(Color.BLUE);
-      snakeBody.setLocation((startX - (10*i)), startY);
-      frm.add(snakeBody);
+      snake = new SnakeGame();
+      snake.setSize(TILE_SIZE, TILE_SIZE);
+      snake.setBackground(Color.BLUE);
+      snakeX[i] = snakeX[0] - (10*i);
+      snakeY[i] = snakeY[0];
+      snake.setLocation(snakeX[i], snakeY[i]);
+      frm.add(snake);
     }
 
 
@@ -85,6 +115,7 @@ public class SnakeGame extends Canvas{
 
     frm.add(apple);
   }
+
 
   public static void main(String args[])
   {
