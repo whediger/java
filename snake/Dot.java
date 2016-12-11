@@ -10,22 +10,40 @@ import javax.swing.*;
 import javax.swing.JFrame;
 
 
-class drawSnake extends JPanel {
+class Snake extends JPanel {
   Insets ins;
 
-  public int dotX = 200;
-  public int dotY = 100;
+  public int snakeMax = (500*500)/(10*10);
+  public int dotX[] = new int[snakeMax];
+  public int dotY[] = new int[snakeMax];
+  public int snakeLength = 4;
 
-  drawSnake() {
+  Snake() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    dotX[0] = 200;
+    dotY[0] = 100;
 
+    for (int i = 1; i <= 3; i++) {
+      dotX[i] = dotX[0] - (10*i);
+      dotY[i] = dotY[0];
+    }
   }
 
   protected void paintComponent(Graphics g){
     super.paintComponent(g);
-    g.setColor(Color.RED);
-    g.drawOval(dotX,dotY,10,10);
-    g.fillOval(dotX,dotY,10,10);
+    drawSnake(g);
+  }
+
+  private void drawSnake(Graphics g){
+    for (int i = 0; i < snakeLength; i++) {
+      if (i == 0) g.setColor(Color.BLACK);
+      else g.setColor(Color.WHITE);
+
+      g.drawOval(dotX[i],dotY[i],10,10);
+      g.fillOval(dotX[i],dotY[i],10,10);
+    }
+
+
   }
 }
 
@@ -37,13 +55,13 @@ public class Dot implements KeyListener, ActionListener {
   private final int TILE_SIZE = 10; //value for height and width of tiles.
 
   JFrame frm;
-  drawSnake pp;
+  Snake pp;
 
   Canvas dot;
 
   public void start() {
     frm = new JFrame("Dot Game");
-    pp = new drawSnake();
+    pp = new Snake();
 
     frm.setSize(FRAME_HEIGHT, FRAME_WIDTH);
     frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +70,7 @@ public class Dot implements KeyListener, ActionListener {
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     frm.setLocation(dim.width/2-frm.getSize().width/2, dim.height/2-frm.getSize().height/2);
 
-    pp.setBackground(Color.GREEN);
+    pp.setBackground(Color.GRAY);
 
     frm.add(pp);
     frm.setVisible(true);
@@ -82,14 +100,14 @@ public class Dot implements KeyListener, ActionListener {
   }
 
   public void checkCollision(){
-    if (pp.dotX <= 0)
-      pp.dotX = 0;
-    if (pp.dotX >= FRAME_WIDTH-12)
-      pp.dotX = FRAME_WIDTH - 12;
-    if (pp.dotY >= FRAME_HEIGHT -34)
-      pp.dotY = FRAME_HEIGHT - 34;
-    if (pp.dotY <= 0)
-      pp.dotY = 0;
+    if (pp.dotX[0] <= 0)
+      pp.dotX[0] = 0;
+    if (pp.dotX[0] >= FRAME_WIDTH-12)
+      pp.dotX[0] = FRAME_WIDTH - 12;
+    if (pp.dotY[0] >= FRAME_HEIGHT -34)
+      pp.dotY[0] = FRAME_HEIGHT - 34;
+    if (pp.dotY[0] <= 0)
+      pp.dotY[0] = 0;
   }
 
 
@@ -99,16 +117,27 @@ public class Dot implements KeyListener, ActionListener {
   //down is 40
   public void move(int key) {
     if (key == 39){
-      pp.dotX += 10;
+      moveBody();
+      pp.dotX[0] += 10;
     } else if (key == 37){
-      pp.dotX -= 10;
+      moveBody();
+      pp.dotX[0] -= 10;
     } else if (key == 38){
-      pp.dotY -= 10;
+      moveBody();
+      pp.dotY[0] -= 10;
     } else if (key == 40){
-      pp.dotY += 10;
+      moveBody();
+      pp.dotY[0] += 10;
     }
     checkCollision();
   }
+  public void moveBody(){
+    for (int i = pp.snakeLength; i > 0 ; i--) {
+      pp.dotY[i] = pp.dotY[i-1];
+      pp.dotX[i] = pp.dotX[i-1];
+    }
+  }
+
 
   public static void main(String args[])
   {
