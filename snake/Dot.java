@@ -121,15 +121,17 @@ public class Dot implements KeyListener, ActionListener {
     // System.out.println("key typed: " + key);
   }
 
+  //use commented if vlock code to allow snake to touch
+  //sides of window without ending game
   public void checkCollision(){
-    if (pp.dotX[0] <= 0)
-      pp.dotX[0] = 0;
-    if (pp.dotX[0] >= FRAME_WIDTH-10)
-      pp.dotX[0] = FRAME_WIDTH - 10;
-    if (pp.dotY[0] >= FRAME_HEIGHT -30)
-      pp.dotY[0] = FRAME_HEIGHT - 30;
-    if (pp.dotY[0] <= 0)
-      pp.dotY[0] = 0;
+    if (pp.dotX[0] <= -10)
+      pp.runGame = false; //pp.dotX[0] = 0;
+    if (pp.dotX[0] >= FRAME_WIDTH-0)
+      pp.runGame = false; //pp.dotX[0] = FRAME_WIDTH - 10;
+    if (pp.dotY[0] >= FRAME_HEIGHT -20)
+      pp.runGame = false; //pp.dotY[0] = FRAME_HEIGHT - 30;
+    if (pp.dotY[0] <= -10)
+      pp.runGame = false; //pp.dotY[0] = 0;
 
     for(int i = pp.snakeLength; i > 0; i--)  {
       //commenting following if statement will allow snake to travel through self
@@ -148,24 +150,32 @@ public class Dot implements KeyListener, ActionListener {
 
   public void move(int key) {
     //right is 39
-    if (key == 39){
+    if (key == 39 && checkForSpace(key)){
       moveBody();
       pp.dotX[0] += 10;
     //left is 37
-    } else if (key == 37){
+    } else if (key == 37 && checkForSpace(key)){
       moveBody();
       pp.dotX[0] -= 10;
     //up is 38
-    } else if (key == 38){
+    } else if (key == 38 && checkForSpace(key)){
       moveBody();
       pp.dotY[0] -= 10;
     //down is 40
-    } else if (key == 40){
+    } else if (key == 40 && checkForSpace(key)){
       moveBody();
       pp.dotY[0] += 10;
     }
     checkCollision();
     eatApple();
+  }
+  //returns true if snake is not turning back on self.
+  public boolean checkForSpace(int key) {
+    if (key == 39 && pp.dotX[0] - pp.dotX[1] >= 0) return true; //space to right
+    if (key == 37 && pp.dotX[0] - pp.dotX[1] <= 0) return true; //space to left
+    if (key == 38 && pp.dotY[0] - pp.dotY[1] <= 0) return true; //space above
+    if (key == 40 && pp.dotY[0] - pp.dotY[1] >= 0) return true; //space below
+    return false; //else return false, no space
   }
 
   public void moveBody(){
