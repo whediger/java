@@ -17,12 +17,11 @@ class PaintPanel extends JPanel {
   public int dotY = 100;
 
   PaintPanel() {
-    setBorder(BorderFactory.createLineBorder(Color.RED));
+    setBorder(BorderFactory.createLineBorder(Color.BLACK));
   }
 
   protected void paintComponent(Graphics g){
     super.paintComponent(g);
-    System.out.println("in paint");
     g.setColor(Color.RED);
     g.drawOval(dotX,dotY,10,10);
     g.fillOval(dotX,dotY,10,10);
@@ -56,15 +55,6 @@ public class Dot implements KeyListener, ActionListener {
     frm.setVisible(true);
   }
 
-  // public void paintComponent(Graphics g){
-  //   super.paintComponent(g);
-  //   System.out.println("in paint");
-  //   g.setColor(Color.RED);
-  //   g.drawOval(dotX,dotY,10,10);
-  //   g.fillOval(dotX,dotY,10,10);
-  //
-  // }
-
   public void actionPerformed(ActionEvent e) {
   }
 
@@ -73,20 +63,19 @@ public class Dot implements KeyListener, ActionListener {
     int key = e.getKeyCode();
     move(key);
     pp.repaint();
-    System.out.println("key pressed: " + key);
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
     //set vals to flase on keyup to stop movement
     int key = e.getKeyCode();
-    System.out.println("key released: " + key);
+    // System.out.println("key released: " + key);
   }
 
   @Override
   public void keyTyped(KeyEvent e) {
     int key = e.getKeyCode();
-    System.out.println("key typed: " + key);
+    // System.out.println("key typed: " + key);
   }
 
 
@@ -95,7 +84,6 @@ public class Dot implements KeyListener, ActionListener {
   //up is 38
   //down is 40
   public void move(int key) {
-    System.out.println("in move " + key);
     if (key == 39){
       pp.dotX += 10;
     } else if (key == 37){
