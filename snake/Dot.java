@@ -22,6 +22,8 @@ class Snake extends JPanel {
   public int appleX;
   public int appleY;
 
+  public boolean runGame;
+
   Snake() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
     dotX[0] = 200;
@@ -32,6 +34,7 @@ class Snake extends JPanel {
       dotY[i] = dotY[0];
     }
 
+    runGame = true;
     randApple();
   }
 
@@ -102,7 +105,7 @@ public class Dot implements KeyListener, ActionListener {
   public void keyPressed(KeyEvent e) {
     int key = e.getKeyCode();
     move(key);
-    pp.repaint();
+    if(pp.runGame) pp.repaint();
   }
 
   @Override
@@ -127,15 +130,20 @@ public class Dot implements KeyListener, ActionListener {
       pp.dotY[0] = FRAME_HEIGHT - 30;
     if (pp.dotY[0] <= 0)
       pp.dotY[0] = 0;
+
+    for(int i = pp.snakeLength; i > 0; i--)  {
+      //commenting following if statement will allow snake to travel through self
+      if (pp.dotY[0] == pp.dotY[i] && pp.dotX[0] == pp.dotX[i])
+          pp.runGame = false;
+    }
   }
 
   public void eatApple(){
     if(pp.appleX == pp.dotX[0] && pp.appleY == pp.dotY[0]){
       pp.randApple();
-      pp.snakeLength++;
+      pp.snakeLength += 3;
       pp.repaint();
     }
-
   }
 
   public void move(int key) {
@@ -159,6 +167,7 @@ public class Dot implements KeyListener, ActionListener {
     checkCollision();
     eatApple();
   }
+
   public void moveBody(){
     for (int i = pp.snakeLength; i > 0 ; i--) {
       pp.dotY[i] = pp.dotY[i-1];
