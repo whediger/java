@@ -18,6 +18,7 @@ class PaintPanel extends JPanel {
 
   PaintPanel() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
   }
 
   protected void paintComponent(Graphics g){
@@ -48,6 +49,8 @@ public class Dot implements KeyListener, ActionListener {
     frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frm.addKeyListener(this);
     frm.setFocusable(true);
+    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    frm.setLocation(dim.width/2-frm.getSize().width/2, dim.height/2-frm.getSize().height/2);
 
     pp.setBackground(Color.GREEN);
 
