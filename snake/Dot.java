@@ -48,7 +48,6 @@ class Snake extends JPanel {
   }
 
   public void randApple(){
-    System.out.println("rand apple called");
     Random rand = new Random();
     //TODO: replace with an enum for all values
     appleX = (rand.nextInt(50 - 4) + 2)*10;
@@ -131,8 +130,6 @@ public class Dot implements KeyListener, ActionListener {
   }
 
   public void eatApple(){
-    System.out.println("eat dotX " + pp.dotX[0] + " dotY[0] " + pp.dotY[0]);
-    System.out.println("appleX " + pp.appleX + " appleY " + pp.appleY);
     if(pp.appleX == pp.dotX[0] && pp.appleY == pp.dotY[0]){
       pp.randApple();
       pp.snakeLength++;
