@@ -68,11 +68,6 @@ public class Dot implements KeyListener, ActionListener {
   public void actionPerformed(ActionEvent e) {
   }
 
-
-//right is 39
-//left is 37
-//up is 38
-//down is 40
   @Override
   public void keyPressed(KeyEvent e) {
     int key = e.getKeyCode();
@@ -94,11 +89,21 @@ public class Dot implements KeyListener, ActionListener {
     System.out.println("key typed: " + key);
   }
 
+
+  //right is 39
+  //left is 37
+  //up is 38
+  //down is 40
   public void move(int key) {
     System.out.println("in move " + key);
     if (key == 39){
       pp.dotX += 10;
-      System.out.println("dotX in move " + pp.dotX);
+    } else if (key == 37){
+      pp.dotX -= 10;
+    } else if (key == 38){
+      pp.dotY -= 10;
+    } else if (key == 40){
+      pp.dotY += 10;
     }
   }
 
