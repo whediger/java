@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.JFrame;
+import java.util.Random;
 
 
 class Snake extends JPanel {
@@ -18,6 +19,9 @@ class Snake extends JPanel {
   public int dotY[] = new int[snakeMax];
   public int snakeLength = 4;
 
+  public int appleX;
+  public int appleY;
+
   Snake() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
     dotX[0] = 200;
@@ -27,11 +31,27 @@ class Snake extends JPanel {
       dotX[i] = dotX[0] - (10*i);
       dotY[i] = dotY[0];
     }
+
+    randApple();
   }
 
   protected void paintComponent(Graphics g){
     super.paintComponent(g);
     drawSnake(g);
+    drawApple(g);
+  }
+
+  private void drawApple(Graphics g){
+    g.setColor(Color.RED);
+    g.drawOval(appleX,appleY,10,10);
+    g.fillOval(appleX,appleY,10,10);
+  }
+
+  public void randApple(){
+    Random rand = new Random();
+    //TODO: replace with an enum for all values
+    appleX = rand.nextInt(500 - 40) + 20;
+    appleY = rand.nextInt(500 - 74) + 20;
   }
 
   private void drawSnake(Graphics g){
@@ -42,8 +62,6 @@ class Snake extends JPanel {
       g.drawOval(dotX[i],dotY[i],10,10);
       g.fillOval(dotX[i],dotY[i],10,10);
     }
-
-
   }
 }
 
@@ -77,6 +95,7 @@ public class Dot implements KeyListener, ActionListener {
   }
 
   public void actionPerformed(ActionEvent e) {
+
   }
 
   @Override
