@@ -6,9 +6,10 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.util.Random;
 import javax.swing.*;
 import javax.swing.JFrame;
-import java.util.Random;
+import javax.swing.Timer;
 
 
 class Snake extends JPanel {
@@ -23,6 +24,7 @@ class Snake extends JPanel {
   public int appleY;
 
   public boolean runGame;
+  public int direction;
 
   Snake() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -35,6 +37,7 @@ class Snake extends JPanel {
     }
 
     runGame = true;
+    direction = 39; //TODO replace numbers with enums
     randApple();
   }
 
@@ -42,6 +45,7 @@ class Snake extends JPanel {
     super.paintComponent(g);
     drawSnake(g);
     drawApple(g);
+    Toolkit.getDefaultToolkit().sync();
   }
 
   private void drawApple(Graphics g){
@@ -76,13 +80,15 @@ public class Dot implements KeyListener, ActionListener {
   private final int TILE_SIZE = 10; //value for height and width of tiles.
 
   JFrame frm;
-  Snake pp;
+  Snake playerSnake;
+  private Timer timer;
+  private final int DELAY = 150;
 
   Canvas dot;
 
   public void start() {
     frm = new JFrame("Dot Game");
-    pp = new Snake();
+    playerSnake = new Snake();
 
     frm.setSize(FRAME_HEIGHT, FRAME_WIDTH);
     frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,21 +97,28 @@ public class Dot implements KeyListener, ActionListener {
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     frm.setLocation(dim.width/2-frm.getSize().width/2, dim.height/2-frm.getSize().height/2);
 
-    pp.setBackground(Color.GRAY);
+    playerSnake.setBackground(Color.GRAY);
 
-    frm.add(pp);
+    frm.add(playerSnake);
     frm.setVisible(true);
+
+    timer = new Timer(DELAY, this);
+    timer.start();
   }
 
   public void actionPerformed(ActionEvent e) {
+    if (playerSnake.runGame){
+
+      move(playerSnake.direction);
+      playerSnake.repaint();
+      // if(playerSnake.runGame) playerSnake.repaint();
+    }
 
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
-    int key = e.getKeyCode();
-    move(key);
-    if(pp.runGame) pp.repaint();
+    playerSnake.direction = e.getKeyCode();
   }
 
   @Override
@@ -121,30 +134,30 @@ public class Dot implements KeyListener, ActionListener {
     // System.out.println("key typed: " + key);
   }
 
-  //use commented if vlock code to allow snake to touch
-  //sides of window without ending game
+  //use commented code for snake to touch
+  //sides of window to end game
   public void checkCollision(){
-    if (pp.dotX[0] <= -10)
-      pp.runGame = false; //pp.dotX[0] = 0;
-    if (pp.dotX[0] >= FRAME_WIDTH-0)
-      pp.runGame = false; //pp.dotX[0] = FRAME_WIDTH - 10;
-    if (pp.dotY[0] >= FRAME_HEIGHT -20)
-      pp.runGame = false; //pp.dotY[0] = FRAME_HEIGHT - 30;
-    if (pp.dotY[0] <= -10)
-      pp.runGame = false; //pp.dotY[0] = 0;
+    if (playerSnake.dotX[0] <= -10)
+       playerSnake.dotX[0] = 0; //playerSnake.runGame = false;
+    if (playerSnake.dotX[0] >= FRAME_WIDTH-0)
+       playerSnake.dotX[0] = FRAME_WIDTH - 10; //playerSnake.runGame = false;
+    if (playerSnake.dotY[0] >= FRAME_HEIGHT -20)
+       playerSnake.dotY[0] = FRAME_HEIGHT - 30; //playerSnake.runGame = false;
+    if (playerSnake.dotY[0] <= -10)
+       playerSnake.dotY[0] = 0; //playerSnake.runGame = false;
 
-    for(int i = pp.snakeLength; i > 0; i--)  {
+    for(int i = playerSnake.snakeLength; i > 0; i--)  {
       //commenting following if statement will allow snake to travel through self
-      if (pp.dotY[0] == pp.dotY[i] && pp.dotX[0] == pp.dotX[i])
-          pp.runGame = false;
+      if (playerSnake.dotY[0] == playerSnake.dotY[i] && playerSnake.dotX[0] == playerSnake.dotX[i])
+          playerSnake.runGame = false;
     }
   }
 
   public void eatApple(){
-    if(pp.appleX == pp.dotX[0] && pp.appleY == pp.dotY[0]){
-      pp.randApple();
-      pp.snakeLength += 3;
-      pp.repaint();
+    if(playerSnake.appleX == playerSnake.dotX[0] && playerSnake.appleY == playerSnake.dotY[0]){
+      playerSnake.randApple();
+      playerSnake.snakeLength += 3;
+      playerSnake.repaint();
     }
   }
 
@@ -152,36 +165,36 @@ public class Dot implements KeyListener, ActionListener {
     //right is 39
     if (key == 39 && checkForSpace(key)){
       moveBody();
-      pp.dotX[0] += 10;
+      playerSnake.dotX[0] += 10;
     //left is 37
     } else if (key == 37 && checkForSpace(key)){
       moveBody();
-      pp.dotX[0] -= 10;
+      playerSnake.dotX[0] -= 10;
     //up is 38
     } else if (key == 38 && checkForSpace(key)){
       moveBody();
-      pp.dotY[0] -= 10;
+      playerSnake.dotY[0] -= 10;
     //down is 40
     } else if (key == 40 && checkForSpace(key)){
       moveBody();
-      pp.dotY[0] += 10;
+      playerSnake.dotY[0] += 10;
     }
     checkCollision();
     eatApple();
   }
   //returns true if snake is not turning back on self.
   public boolean checkForSpace(int key) {
-    if (key == 39 && pp.dotX[0] - pp.dotX[1] >= 0) return true; //space to right
-    if (key == 37 && pp.dotX[0] - pp.dotX[1] <= 0) return true; //space to left
-    if (key == 38 && pp.dotY[0] - pp.dotY[1] <= 0) return true; //space above
-    if (key == 40 && pp.dotY[0] - pp.dotY[1] >= 0) return true; //space below
+    if (key == 39 && playerSnake.dotX[0] - playerSnake.dotX[1] >= 0) return true; //space to right
+    if (key == 37 && playerSnake.dotX[0] - playerSnake.dotX[1] <= 0) return true; //space to left
+    if (key == 38 && playerSnake.dotY[0] - playerSnake.dotY[1] <= 0) return true; //space above
+    if (key == 40 && playerSnake.dotY[0] - playerSnake.dotY[1] >= 0) return true; //space below
     return false; //else return false, no space
   }
 
   public void moveBody(){
-    for (int i = pp.snakeLength; i > 0 ; i--) {
-      pp.dotY[i] = pp.dotY[i-1];
-      pp.dotX[i] = pp.dotX[i-1];
+    for (int i = playerSnake.snakeLength; i > 0 ; i--) {
+      playerSnake.dotY[i] = playerSnake.dotY[i-1];
+      playerSnake.dotX[i] = playerSnake.dotX[i-1];
     }
   }
 
