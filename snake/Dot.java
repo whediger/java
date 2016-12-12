@@ -80,6 +80,7 @@ class Snake extends JPanel {
   }
 
   public void endGame(Graphics g) {
+
     int fontSize = 30;
     String gameOver = "Game Over";
     String restart = "Press Spacebar to Restart";
@@ -108,7 +109,9 @@ public class Dot implements KeyListener, ActionListener {
   JFrame frm;
   Snake playerSnake;
   private Timer timer;
-  private int delay;
+  private static int delay;
+  private final int MAX_SPEED = 40;
+  private final int STARTING_DELAY = 150;
 
   Canvas dot;
 
@@ -128,15 +131,16 @@ public class Dot implements KeyListener, ActionListener {
     frm.add(playerSnake);
     frm.setVisible(true);
 
-    delay = 150;
-    timer = new Timer(delay, this);
+    delay = STARTING_DELAY;
+    timer = new Timer(STARTING_DELAY, this);
     timer.start();
   }
 
   public void actionPerformed(ActionEvent e) {
-      if(!playerSnake.runGame && playerSnake.direction == 32)
+      if(!playerSnake.runGame && playerSnake.direction == 32){
+        timer.stop();
         start();
-      else {
+      } else {
         move(playerSnake.direction);
         playerSnake.repaint();
       }
@@ -184,7 +188,7 @@ public class Dot implements KeyListener, ActionListener {
       playerSnake.randApple();
       playerSnake.snakeLength += 3;
       playerSnake.repaint();
-      if (delay > 40){
+      if (delay > MAX_SPEED){
         delay -= 10;
         timer.stop();
         timer.setDelay(delay);
