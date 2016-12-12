@@ -43,9 +43,17 @@ class Snake extends JPanel {
 
   protected void paintComponent(Graphics g){
     super.paintComponent(g);
-    drawSnake(g);
-    drawApple(g);
+    draw(g);
     Toolkit.getDefaultToolkit().sync();
+  }
+
+  protected void draw(Graphics g){
+    if (runGame) {
+      drawSnake(g);
+      drawApple(g);
+    } else {
+      endGame(g);
+    }
   }
 
   private void drawApple(Graphics g){
@@ -70,6 +78,24 @@ class Snake extends JPanel {
       g.fillOval(dotX[i],dotY[i],10,10);
     }
   }
+
+  public void endGame(Graphics g) {
+    int fontSize = 30;
+    String gameOver = "Game Over";
+    String restart = "Press Spacebar to Restart";
+    String font = "Sans-Serif";
+
+    g.setFont(new Font(font, Font.BOLD, fontSize));
+
+    FontMetrics metrics = g.getFontMetrics(g.getFont());
+    int gameOverCenter = (500 - metrics.stringWidth(gameOver))/2;
+    int restartCenter = (500 - metrics.stringWidth(restart))/2;
+
+    g.setColor(Color.BLUE);
+
+    g.drawString(gameOver, gameOverCenter, 150);
+    g.drawString(restart, restartCenter, 190);
+  }
 }
 
 
@@ -82,7 +108,7 @@ public class Dot implements KeyListener, ActionListener {
   JFrame frm;
   Snake playerSnake;
   private Timer timer;
-  private final int DELAY = 150;
+  private int delay;
 
   Canvas dot;
 
@@ -102,18 +128,18 @@ public class Dot implements KeyListener, ActionListener {
     frm.add(playerSnake);
     frm.setVisible(true);
 
-    timer = new Timer(DELAY, this);
+    delay = 150;
+    timer = new Timer(delay, this);
     timer.start();
   }
 
   public void actionPerformed(ActionEvent e) {
-    if (playerSnake.runGame){
-
-      move(playerSnake.direction);
-      playerSnake.repaint();
-      // if(playerSnake.runGame) playerSnake.repaint();
-    }
-
+      if(!playerSnake.runGame && playerSnake.direction == 32)
+        start();
+      else {
+        move(playerSnake.direction);
+        playerSnake.repaint();
+      }
   }
 
   @Override
@@ -123,7 +149,7 @@ public class Dot implements KeyListener, ActionListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    //set vals to flase on keyup to stop movement
+    //set vals to false on keyup to stop movement
     int key = e.getKeyCode();
     // System.out.println("key released: " + key);
   }
@@ -158,6 +184,13 @@ public class Dot implements KeyListener, ActionListener {
       playerSnake.randApple();
       playerSnake.snakeLength += 3;
       playerSnake.repaint();
+      if (delay > 40){
+        delay -= 10;
+        timer.stop();
+        timer.setDelay(delay);
+        timer.start();
+      }
+
     }
   }
 
@@ -179,6 +212,7 @@ public class Dot implements KeyListener, ActionListener {
       moveBody();
       playerSnake.dotY[0] += 10;
     }
+
     checkCollision();
     eatApple();
   }
@@ -188,7 +222,7 @@ public class Dot implements KeyListener, ActionListener {
     if (key == 37 && playerSnake.dotX[0] - playerSnake.dotX[1] <= 0) return true; //space to left
     if (key == 38 && playerSnake.dotY[0] - playerSnake.dotY[1] <= 0) return true; //space above
     if (key == 40 && playerSnake.dotY[0] - playerSnake.dotY[1] >= 0) return true; //space below
-    return false; //else return false, no space
+    return false; //else return false, not open space
   }
 
   public void moveBody(){
