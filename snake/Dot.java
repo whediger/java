@@ -156,6 +156,7 @@ public class Dot implements KeyListener, ActionListener {
     timer.start();
   }
 
+  @Override
   public void actionPerformed(ActionEvent e) {
 
     if(!playerSnake.runGame && playerSnake.direction == 32){
