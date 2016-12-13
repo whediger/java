@@ -15,10 +15,6 @@ class CopyFile {
     //copy a file
     try (FileInputStream fin = new FileInputStream(args[0]);
           FileOutputStream fos = new FileOutputStream(args[1]);){
-      //attempt to open Files
-
-
-
       do {
         i = fin.read();
         if (i != -1) fos.write(i);
