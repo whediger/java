@@ -78,26 +78,26 @@ class Snake extends JPanel {
     }
   }
 
-  // public void startGame(Graphics g) {
-  //   int fontSize = 20;
-  //   String startTitle = "The Snake Game";
-  //   String start = "Press 's' to Start";
-  //   String instructions = "Snake gets longer and faster with each apple!";
-  //   String font = "Sans-Serif";
-  //
-  //   g.setFont(new Font(font, Font.BOLD, fontSize));
-  //
-  //   FontMetrics metrics = g.getFontMetrics(g.getFont());
-  //   int startTitleCenter = (500 - metrics.stringWidth(startTitle))/2;
-  //   int startCenter = (500 - metrics.stringWidth(start))/2;
-  //   int instructionsCenter = (500 - metrics.stringWidth(instructions))/2;
-  //
-  //   g.setColor(Color.RED);
-  //   g.drawString(startTitle, startTitleCenter, 150);
-  //   g.setColor(Color.BLUE);
-  //   g.drawString(start, startCenter, 190);
-  //   g.drawString(instructions, instructionsCenter, 250);
-  // }
+  public void startGame(Graphics g) {
+    int fontSize = 20;
+    String startTitle = "The Snake Game";
+    String start = "Press 's' to Start";
+    String instructions = "Snake gets longer and faster with each apple!";
+    String font = "Sans-Serif";
+
+    g.setFont(new Font(font, Font.BOLD, fontSize));
+
+    FontMetrics metrics = g.getFontMetrics(g.getFont());
+    int startTitleCenter = (500 - metrics.stringWidth(startTitle))/2;
+    int startCenter = (500 - metrics.stringWidth(start))/2;
+    int instructionsCenter = (500 - metrics.stringWidth(instructions))/2;
+
+    g.setColor(Color.RED);
+    g.drawString(startTitle, startTitleCenter, 150);
+    g.setColor(Color.BLUE);
+    g.drawString(start, startCenter, 190);
+    g.drawString(instructions, instructionsCenter, 250);
+  }
 
   public void endGame(Graphics g) {
 
