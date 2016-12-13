@@ -13,7 +13,6 @@ import javax.swing.Timer;
 
 
 class Snake extends JPanel {
-  Insets ins;
 
   public int snakeMax = (500*500)/(10*10);
   public int dotX[] = new int[snakeMax];
@@ -36,9 +35,9 @@ class Snake extends JPanel {
       dotY[i] = dotY[0];
     }
 
-    runGame = true;
-    direction = 39; //TODO replace numbers with enums
+     //TODO replace numbers with enums
     randApple();
+    runGame = true;
   }
 
   protected void paintComponent(Graphics g){
@@ -78,6 +77,27 @@ class Snake extends JPanel {
       g.fillOval(dotX[i],dotY[i],10,10);
     }
   }
+
+  // public void startGame(Graphics g) {
+  //   int fontSize = 20;
+  //   String startTitle = "The Snake Game";
+  //   String start = "Press 's' to Start";
+  //   String instructions = "Snake gets longer and faster with each apple!";
+  //   String font = "Sans-Serif";
+  //
+  //   g.setFont(new Font(font, Font.BOLD, fontSize));
+  //
+  //   FontMetrics metrics = g.getFontMetrics(g.getFont());
+  //   int startTitleCenter = (500 - metrics.stringWidth(startTitle))/2;
+  //   int startCenter = (500 - metrics.stringWidth(start))/2;
+  //   int instructionsCenter = (500 - metrics.stringWidth(instructions))/2;
+  //
+  //   g.setColor(Color.RED);
+  //   g.drawString(startTitle, startTitleCenter, 150);
+  //   g.setColor(Color.BLUE);
+  //   g.drawString(start, startCenter, 190);
+  //   g.drawString(instructions, instructionsCenter, 250);
+  // }
 
   public void endGame(Graphics g) {
 
@@ -137,13 +157,14 @@ public class Dot implements KeyListener, ActionListener {
   }
 
   public void actionPerformed(ActionEvent e) {
-      if(!playerSnake.runGame && playerSnake.direction == 32){
-        timer.stop();
-        start();
-      } else {
-        move(playerSnake.direction);
-        playerSnake.repaint();
-      }
+
+    if(!playerSnake.runGame && playerSnake.direction == 32){
+      timer.stop();
+      start();
+    } else {
+      move(playerSnake.direction);
+      playerSnake.repaint();
+    }
   }
 
   @Override
