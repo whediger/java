@@ -1,4 +1,8 @@
 
+import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
+
+
 //compute the hypotenuse
 
 class Hypot {
@@ -10,8 +14,8 @@ class Hypot {
     side1 = 3.0;
     side2 = 4.0;
 
-    hypot = Math.sqrt(Math.pow(side1, 2)) +
-              Math.pow(side2, 2);
+    hypot = sqrt( pow(side1, 2)) +
+                  pow(side2, 2);
 
     System.out.println("A(" + side1 + ")^2 + " +"B(" + side2 + ")^2  => " + "C(" + hypot + ")");
   }
