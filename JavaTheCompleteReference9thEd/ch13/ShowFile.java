@@ -5,37 +5,33 @@ class ShowFile {
   public static void main(String args[])
   {
     int i;
-    FileInputStream fin;
+    FileInputStream fin = null;
 
-    //first confirm a filename has been specified
+    //first, confirm file name
     if (args.length != 1) {
-      System.out.println("Usage: show filename");
+      System.out.println("Usage: ShowFile <filename>");
       return;
     }
 
-    // attempt to open file
+    //following opens a file and reads chars until EOF
     try {
       fin = new FileInputStream(args[0]);
-    } catch (IOException exc){
-      System.out.print("cannot open file" + exc);
-      return;
-    }
 
-    //now file is open
-    //following reads chars until EOF
-    try {
       do {
         i = fin.read();
-        if (i != 1) System.out.println((char) i);
+        if(i != -1) System.out.print((char) i);
       } while (i != -1);
+    } catch (FileNotFoundException exc) {
+      System.out.println("Error: No such file");
     } catch (IOException exc){
-      System.out.println("error reading file " + exc);
-    }
-
-    try {
-      fin.close();
-    } catch (IOException exc){
-      System.out.println(exc);
+      System.out.println("Error: IO Exception");
+    } finally {
+      //close file in any case
+      try {
+        if(fin != null) fin.close();
+      } catch (IOException exc){
+        System.out.println("Error: Closing file");
+      }
     }
   }
 }
