@@ -9,10 +9,9 @@ class NewThread extends Thread {
     start(); //start the thread
   }
 
-
   public void run(){
     try{
-      for (int i = 5; i > 5; i--) {
+      for (int i = 5; i > 0; i--) {
         System.out.println(getName() + ": " + i);
         Thread.sleep(1000);
         synchronized(this){
@@ -51,6 +50,11 @@ class ThreadGroupDemo {
     NewThread ob3 = new NewThread("three", groupB);
     NewThread ob4 = new NewThread("four", groupB);
 
+    System.out.println("\nOutput from list: ");
+    groupA.list();
+    groupB.list();
+    System.out.println();
+
     System.out.println("Suspending Group A");
     Thread tga[] = new Thread[groupA.activeCount()];
     groupA.enumerate(tga);
@@ -69,8 +73,8 @@ class ThreadGroupDemo {
 
 
     //wait for threads to finish
-    System.out.println("Waiting for threads to finish");
     try{
+      System.out.println("Waiting for threads to finish");
       ob1.join();
       ob2.join();
       ob3.join();
