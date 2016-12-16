@@ -9,6 +9,10 @@ class IsDemo {
       if(Character.isWhitespace(a[i])) System.out.println(a[i] + " is whitespace");
       if(Character.isUpperCase(a[i])) System.out.println(a[i] + " is uppercase");
       if(Character.isLowerCase(a[i])) System.out.println(a[i] + " is lowercase");
+
+      Runtime tr = Runtime.getRuntime();
+      System.out.println("+==]========>");
+      System.out.println(tr.totalMemory());
     }
   }
 }
