@@ -42,7 +42,7 @@ class VectorDemo {
 
     System.out.println("\nElements in vector: ");
     while(en.hasMoreElements())
-      System.out.println(en.nextElement() + " ");
+      System.out.print(en.nextElement() + " ");
 
     System.out.println();
   }
