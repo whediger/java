@@ -17,7 +17,7 @@ class Address {
   }
 
   public String toString() {
-    return name + ", " + street + ", " + city  + ", " + state  + ", " + code;
+    return name + "\n" + street + "\n" + city  + ", " + state  + ", " + code;
   }
 }
 
@@ -32,7 +32,7 @@ class MailList {
     ml.add(new Address("Joe Shmoe", "98 main st.", "breakenridge", "CO", "80231"));
 
 
-    for(Address element : ml) System.out.println(element);
+    for(Address element : ml) System.out.println(element + "\n");
 
     System.out.println();
   }
