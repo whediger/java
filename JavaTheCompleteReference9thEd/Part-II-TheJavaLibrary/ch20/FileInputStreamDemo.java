@@ -15,7 +15,7 @@ class FileInputStreamDemo {
       System.out.println("First " + n + " bytes of the file one read at a time");
 
       for (int i = 0; i < n; i++)
-        System.out.println((char) f.read());
+        System.out.print((char) f.read());
 
       System.out.println("Still available: " + f.available());
       System.out.println("Reading the next " + n + " with one read(b[])");
