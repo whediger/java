@@ -35,7 +35,7 @@ public class CBGroup extends Applet implements ItemListener {
     repaint();
   }
 
-  //diaplay curent state of checkboxes
+  //display curent state of checkboxes
   public void paint(Graphics g){
     msg = "Current selection: ";
     msg += cbg.getSelectedCheckbox().getLabel();
