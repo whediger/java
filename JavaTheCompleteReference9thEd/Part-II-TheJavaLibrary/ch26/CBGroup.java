@@ -30,6 +30,7 @@ public class CBGroup extends Applet implements ItemListener {
     mac.addItemListener(this);
   }
 
+  @Override
   public void itemStateChanged(ItemEvent ie){
     repaint();
   }
