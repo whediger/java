@@ -74,7 +74,7 @@ class DecThread implements Runnable {
       sem.acquire();
       System.out.println(name + " has a permit");
       for (int i = 0; i < 5 ; i++) {
-        Shared.count++;
+        Shared.count--;
         System.out.println(name + " uses permit: " + Shared.count);
       }
 
