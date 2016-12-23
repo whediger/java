@@ -16,12 +16,14 @@ class CallableDemo {
     f3 = ex.submit(new Factorial(5));
 
     try{
-      System.out.println(f.get());
+      System.out.println(f.get(2000, TimeUnit.MILLISECONDS));
       System.out.println(f2.get());
-      System.out.println(f3.get());
+      System.out.println(f3.get(10, TimeUnit.MILLISECONDS));
     }catch(InterruptedException exc){
       System.out.println(exc);
     }catch(ExecutionException exc){
+      System.out.println(exc);
+    }catch(TimeoutException exc){
       System.out.println(exc);
     }
 
