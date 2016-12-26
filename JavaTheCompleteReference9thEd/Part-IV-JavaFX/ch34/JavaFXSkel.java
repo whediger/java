@@ -14,7 +14,7 @@ public class JavaFXSkel extends Application {
     launch(args);
   }
 
-  @Override //start and use Stage
+  @Override //start and use Stage - CANNOT USE the init() method
   public void start(Stage myStage){
     System.out.println("inside the init method");
 
