@@ -35,17 +35,17 @@ public class JTreeDemo extends JApplet {
     DefaultMutableTreeNode a = new DefaultMutableTreeNode("A");
     top.add(a);
     DefaultMutableTreeNode a1 = new DefaultMutableTreeNode("A1");
-    top.add(a1);
+    a.add(a1);
     DefaultMutableTreeNode a2 = new DefaultMutableTreeNode("A2");
-    top.add(a2);
+    a.add(a2);
 
     //create subtree B
     DefaultMutableTreeNode b = new DefaultMutableTreeNode("B");
     top.add(b);
     DefaultMutableTreeNode b1 = new DefaultMutableTreeNode("B1");
-    top.add(b1);
+    b.add(b1);
     DefaultMutableTreeNode b2 = new DefaultMutableTreeNode("B2");
-    top.add(b2);
+    b.add(b2);
 
     //create the tree
     tree = new JTree(top);
