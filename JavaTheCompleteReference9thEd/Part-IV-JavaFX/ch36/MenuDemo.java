@@ -5,6 +5,7 @@ import javafx.geometry.*;
 import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 
 public class MenuDemo extends Application {
@@ -32,11 +33,11 @@ public class MenuDemo extends Application {
     MenuBar mb = new MenuBar();
 
     //file menu +==]========>
-    Menu fileMenu = new Menu("File");
-    MenuItem open = new MenuItem("Open");
-    MenuItem close = new MenuItem("Close");
-    MenuItem save = new MenuItem("Save");
-    MenuItem exit = new MenuItem("Exit");
+    Menu fileMenu = new Menu("_File");
+    MenuItem open = new MenuItem("_Open");
+    MenuItem close = new MenuItem("_Close");
+    MenuItem save = new MenuItem("_Save");
+    MenuItem exit = new MenuItem("_Exit");
     fileMenu.getItems().addAll(open, close, save, new SeparatorMenuItem(), exit);
 
     mb.getMenus().add(fileMenu);
@@ -95,6 +96,12 @@ public class MenuDemo extends Application {
     low.setOnAction(MEHandler);
     reset.setOnAction(MEHandler);
     about.setOnAction(MEHandler);
+
+    //add accelerators +==]========>
+    open.setAccelerator(KeyCombination.keyCombination("shortcut+o"));
+    close.setAccelerator(KeyCombination.keyCombination("shortcut+c"));
+    save.setAccelerator(KeyCombination.keyCombination("shortcut+s"));
+    exit.setAccelerator(KeyCombination.keyCombination("shortcut+e"));
 
     rootNode.setTop(mb);
     rootNode.setCenter(response);
