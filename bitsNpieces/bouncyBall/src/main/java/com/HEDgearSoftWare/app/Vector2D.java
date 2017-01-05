@@ -15,6 +15,10 @@ public class Vector2D
     return this.x;
   }
 
+  public void setX(int n){
+    this.x = n;
+  }
+
   public int getY(){
     return this.y;
   }
