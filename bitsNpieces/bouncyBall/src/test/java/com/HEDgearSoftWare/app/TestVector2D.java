@@ -10,10 +10,24 @@ import static org.junit.Assert.*;
 
 public class TestVector2D {
 
+  Vector2D displacement;
+  Vector2D vector2;
+
   @Test
   public void testConstructor(){
-    Vector2D displacement = new Vector2D(2, 3);
+    displacement = new Vector2D(2, 3);
+
     assertTrue(displacement.getX() == 2);
     assertTrue(displacement.getY() == 3);
+  }
+
+  @Test
+  public void testAdd(){
+    displacement = new Vector2D(2, 3);
+    vector2 = new Vector2D(-1, -1);
+
+    displacement.add(vector2);
+    assertTrue(displacement.getX() == 1);
+    assertTrue(displacement.getY() == 2);
   }
 }

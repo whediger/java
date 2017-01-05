@@ -22,4 +22,9 @@ public class Vector2D
   public int getY(){
     return this.y;
   }
+
+  public void add(Vector2D v){
+    this.x += v.getX();
+    this.y += v.getY();
+  }
 }
