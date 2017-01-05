@@ -31,6 +31,10 @@ public class Ball
     displacement = v;
   }
 
+  public Vector2D getDisplacement(){
+    return displacement;
+  }
+
   public void update(){
     point.x += displacement.getX();
     point.y += displacement.getY();
