@@ -27,4 +27,9 @@ public class Vector2D
     this.x += v.getX();
     this.y += v.getY();
   }
+
+  public void multiply(int n){
+    this.x *= n;
+    this.y *= n;
+  }
 }

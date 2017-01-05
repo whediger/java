@@ -30,4 +30,13 @@ public class TestVector2D {
     assertTrue(displacement.getX() == 1);
     assertTrue(displacement.getY() == 2);
   }
+
+  @Test
+  public void testMultiply(){
+    displacement = new Vector2D(2, 3);
+
+    displacement.multiply(-1);
+    assertTrue(displacement.getX() == -2);
+    assertTrue(displacement.getY() == -3);
+  }
 }
