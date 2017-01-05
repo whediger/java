@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.HEDgearSoftWare.app</groupId>
+  <artifactId>bouncyBall</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>bouncyBall</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.9</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <devlopers>
+    <developer>
+      <name>Wes Hediger</name>
+      <id>HED2084</id>
+      <organization>HEDgear SoftWare</organization>
+      <rolls>
+        <roll>Developer</roll>
+      </rolls>
+    </developer>
+  </devlopers>
+  <description>
+    "This is a short project to goof around with"
+  </description>
+  <organization>
+    <name>HEDgear SoftWare</name>
+    <url>https://findwes-393ac.firebaseapp.com/1</url>
+  </organization>
+  <inceptionYear>1984</inceptionYear>
+</project>

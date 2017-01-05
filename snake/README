@@ -1,0 +1,4 @@
+
+n't move the dots 10 pixels at a time. Have each dot take up a single cell, and then when you render the dots, do what is needed to position them correctly. This separates display from data.
+ * When restarting the game, figure out how to reuse the frame and empty it and insert a new Snake into there instead of creating a new window.
+ * Why does a dot appear in the upper left when an apple is eaten? I suspect it is snakeRepaint without placing the new segments yet.
