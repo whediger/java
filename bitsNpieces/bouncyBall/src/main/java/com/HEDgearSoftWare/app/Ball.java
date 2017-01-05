@@ -57,8 +57,13 @@ public class Ball
       displacement.setX(-displacement.getX());
     }
 
-    if(getY() < 0){
+    if (getY() < 0) {
       setY(0);
+      displacement.setY(-displacement.getY());
+    }
+
+    if(getY() > Screen.HEIGHT - (2 * radius) - 1){
+      setY(Screen.HEIGHT - (2 * radius) - 1);
       displacement.setY(-displacement.getY());
     }
   }

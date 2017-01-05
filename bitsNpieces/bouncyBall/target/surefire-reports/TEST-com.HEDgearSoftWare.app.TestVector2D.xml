@@ -62,7 +62,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.HEDgearSoftWare.app.TestVector2D" name="testAdd" time="0"/>
-  <testcase classname="com.HEDgearSoftWare.app.TestVector2D" name="testConstructor" time="0"/>
   <testcase classname="com.HEDgearSoftWare.app.TestVector2D" name="testMultiply" time="0"/>
+  <testcase classname="com.HEDgearSoftWare.app.TestVector2D" name="testConstructor" time="0"/>
+  <testcase classname="com.HEDgearSoftWare.app.TestVector2D" name="testAdd" time="0"/>
 </testsuite>

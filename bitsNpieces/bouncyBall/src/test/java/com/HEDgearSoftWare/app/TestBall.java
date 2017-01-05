@@ -65,9 +65,24 @@ public class TestBall
     ball.setDisplacement(displacement);
     ball.update();
 
-    assertTrue(ball.getY() == 0);
     assertTrue(ball.getX() == 102);
+    assertTrue(ball.getY() == 0);
 
     assertTrue(ball.getDisplacement().getY() > 0);
+  }
+
+  @Test
+  public void testMoveBallOffScreenBottom(){
+    Ball ball = new Ball(100, 382, radius);
+
+    Vector2D displacement = new Vector2D(2, 3);
+    ball.setDisplacement(displacement);
+    ball.update();
+
+    assertTrue(ball.getY() == (Screen.HEIGHT - (2 * radius) - 1));
+    assertTrue(ball.getX() == 102);
+
+    assertTrue(ball.getDisplacement().getY() < 0);
+
   }
 }
