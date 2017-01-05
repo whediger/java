@@ -15,16 +15,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <devlopers>
+  <developers>
     <developer>
       <name>Wes Hediger</name>
       <id>HED2084</id>
       <organization>HEDgear SoftWare</organization>
-      <rolls>
-        <roll>Developer</roll>
-      </rolls>
+      <roles>
+        <role>Developer</role>
+      </roles>
     </developer>
-  </devlopers>
+  </developers>
   <description>
     "This is a short project to goof around with"
   </description>
