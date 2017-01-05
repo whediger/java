@@ -56,5 +56,10 @@ public class Ball
       setX(0);
       displacement.setX(-displacement.getX());
     }
+
+    if(getY() < 0){
+      setY(0);
+      displacement.setY(-displacement.getY());
+    }
   }
 }
