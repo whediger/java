@@ -1,9 +1,5 @@
 package com.HEDgearSoftWare.app;
 
-/**
- * Hello world!
- *
- */
 
 public class Vector2D
 {
