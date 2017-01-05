@@ -4,21 +4,24 @@ import org.junit.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
 public class TestBall
 {
 
+  private int radius = 50;
+
   @Test
   public void testBallConstructor(){
-    Ball ball = new Ball(100, 100, 50);
+    Ball ball = new Ball(100, 100, radius);
 
     assertTrue(ball.getX() == 100);
     assertTrue(ball.getY() == 100);
-    assertTrue(ball.getRadius() == 50);
+    assertTrue(ball.getRadius() == radius);
   }
 
   @Test
   public void testMoveBall(){
-    Ball ball = new Ball(100, 100, 50);
+    Ball ball = new Ball(100, 100, radius);
     Vector2D displacement = new Vector2D(2, 3);
 
     ball.setDisplacement(displacement);
@@ -29,7 +32,7 @@ public class TestBall
 
   @Test
   public void testMoveBallOffScreenRight(){
-    Ball ball = new Ball(589, 100, 50);
+    Ball ball = new Ball(589, 100, radius);
     Vector2D displacement = new Vector2D(2, 3);
 
     ball.setDisplacement(displacement);
@@ -39,5 +42,18 @@ public class TestBall
 
     //check if ball reversed direction
     assertTrue(ball.getDisplacement().getX() < 0);
+  }
+
+  @Test
+  public void testMeveBallOffScreenLeft(){
+    Ball ball = new Ball(1, 100, radius);
+
+    Vector2D displacement = new Vector2D(-2, 3);
+    ball.setDisplacement(displacement);
+    ball.update();
+    assertTrue(ball.getX() == 0);
+    assertTrue(ball.getY() == 103);
+
+    assertTrue(ball.getDisplacement().getX() > 0);
   }
 }

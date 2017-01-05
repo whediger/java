@@ -27,6 +27,10 @@ public class Ball
     return point.y;
   }
 
+  public void setY(int n){
+    point.y = n;
+  }
+
   public int getRadius(){
     return radius;
   }
@@ -45,6 +49,11 @@ public class Ball
 
     if (getX() > Screen.WIDTH - (2 * radius) - 1){
       setX(Screen.WIDTH - (2 * radius) -1);
+      displacement.setX(-displacement.getX());
+    }
+
+    if (getX() < 0) {
+      setX(0);
       displacement.setX(-displacement.getX());
     }
   }
